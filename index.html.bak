@@ -1,0 +1,140 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Liqiang's Homepage.</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- **** layout stylesheet **** -->
+    <link rel="stylesheet" type="text/css" href="res/style.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 800px)" href="res/style-min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 800px) and (max-device-width: 1600px)" href="res/style-middle.css">
+    <!--<link rel="stylesheet" type="text/css" media="screen and (min-width: 1600px)" href="res/style.css">
+  <!-- **** colour scheme stylesheet **** -->
+    <link rel="stylesheet" type="text/css" href="res/colour.css">
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+
+    _gaq.push(['_setAccount', 'UA-27528284-1']);
+
+    _gaq.push(['_trackPageview']);
+
+
+
+
+    (function() {
+
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+
+    })();
+    </script>
+    <!-- start Mixpanel -->
+    <script type="text/javascript">
+    (function(d, c) {
+        var a, b, g, e;
+        a = d.createElement("script");
+        a.type = "text/javascript";
+        a.async = !0;
+        a.src = ("https:" === d.location.protocol ? "https:" : "http:") + '//api.mixpanel.com/site_media/js/api/mixpanel.2.js';
+        b = d.getElementsByTagName("script")[0];
+        b.parentNode.insertBefore(a, b);
+        c._i = [];
+        c.init = function(a, d, f) {
+            var b = c;
+            "undefined" !== typeof f ? b = c[f] = [] : f = "mixpanel";
+            g = "disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
+            for (e = 0; e < g.length; e++)(function(a) { b[a] = function() { b.push([a].concat(Array.prototype.slice.call(arguments, 0))) } })(g[e]);
+            c._i.push([a, d, f])
+        };
+        window.mixpanel = c
+    })(document, []);
+    mixpanel.init("f53c1fec477e7648ce5f936703d9cdf0");
+    </script>
+    <!-- end Mixpanel -->
+</head>
+
+<body>
+    <div id="main">
+        <div id="links">
+            <!-- **** INSERT LINKS HERE **** -->
+            <a href="http://www.xjtu.edu.cn">XJTU</a> | <a href="http://www.nus.edu.sg"> 
+    NUS</a> | <a href="http://www.sdu.edu.cn/">SDU</a> </div>
+        <div id="logo">
+            <h1>Liqiang Nie</h1>
+            <h2>Welcome to Liqiang's homepage:)</h2>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a id="selected" href="index.html">Home</a></li>
+                <li><a href="Research.html">Research</a></li>
+                <li><a href="Links.html">Codes and Data</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Alumni.html">Alumni</a></li>
+                <li> <a style="color:red;" href="Activities.html"> <strong> 招生</strong></a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="column1">
+                <div class="sidebaritem">
+                    <h1>Contact</h1>
+                    <!-- **** INSERT NEWS ITEMS HERE **** -->
+                    <h2>Address:</h2>
+                    <p align="justify" style="font-size: 75%">
+                        Shandong University (Tsingtao Campus), 72 Binhai Road, Jimo Qingdao, Shandong Province, China , Zipcode: 266237
+                    </p>
+                    <h2>Email:</h2>
+                    <p style="font-size: 80%">nieliqiang@gmail.com</p>
+                </div>
+                <div class="sidebaritem">
+                    <a style="padding-left:0px;" href="http://www2.clustrmaps.com/counter/maps.php?url=http://www.comp.nus.edu.sg/~nieliq/" id="clustrMapsLink"><img src="http://www2.clustrmaps.com/counter/index2.php?url=http://www.comp.nus.edu.sg/~nieliq/" style="border:0px; width:100%; " alt="Locations of visitors to this page" title="Locations of visitors to this page" id="clustrMapsImg" onerror="this.onerror=null; this.src='http://clustrmaps.com/images/clustrmaps-back-soon.jpg'; document.getElementById('clustrMapsLink').href='http://clustrmaps.com';" />
+</a>
+                </div>
+            </div>
+            <!---
+        <div class="sidebaritem">
+          <h1>additional links</h1>
+          <div class="sbilinks">
+             <ul>
+              <li><a href="http://www.opendesigns.org">open designs</a></li>
+              <li><a href="http://www.w3schools.com/xhtml/default.asp">learn XHTML</a></li>
+              <li><a href="http://www.w3schools.com/css/default.asp">learn CSS</a></li>
+              <li><a href="http://www.mozilla.com/firefox">get firefox</a></li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="sidebaritem">
+          <h1>other information</h1>
+          <p>
+            This space can be used for additional information such as a contact phone number, address
+            or maybe even a graphic.
+          </p>
+        </div>
+        -->
+            <div id="column2">
+                <h1>introduction</h1>
+                <!-- **** INSERT PAGE CONTENT HERE **** -->
+                <span class="center">
+        <img src="res/nieliqiang2.JPG" alt="Liqiang" style="height: 280px;"></span>
+                <p>
+                </p>
+                <p>
+                    Hello, this is Dr. Liqiang Nie (聂礼强). He is currently a professor with the <a href="http://www.cs.sdu.edu.cn/default.do">
+            School of Computer Science and Technology (Tsingtao campus)</a>, <a href="http://www.sdu.edu.cn/">Shandong University</a>. Meanwhile, he is the adjunct dean with the Shandong AI institute, founded by Qilu University of Technology (Shandong Academy of Science). Dr. Nie was given the title of "Qilu Scholar" and PhD supervisor.</p>
+                <p>
+                    Dr. Nie received his B.Eng. from <a href="http://www.xjtu.edu.cn/">Xi'an Jiaotong University</a> in July 2009. He then came to <a href="http://www.nus.edu.sg/">National University of Singapore</a> to pursue his PhD degree supervised by <a href="http://www.comp.nus.edu.sg/~chuats/">Prof. Tat-Seng Chua</a> from Aug 2009 to Oct 2013. During his PhD study, he was mentored by Prof. <a href="https://sites.google.com/site/homeofrichanghong/">Richang Hong</a> and <a href="https://sites.google.com/site/mengwangsite/">Meng Wang</a>, respectively. After PhD, Dr. Nie continued his research in the <a href="http://next.comp.nus.edu.sg/">NExT Research Center</a> as a research follow from Nov 2013 to Nov 2016.</p>
+                <p> <a style="color:red;" href="Activities.html"> <strong> He is seeking intern, master, phd and postdoc candidates.</strong></a></li>.</p>
+            </div>
+        </div>
+        <div id="footer">
+            copyright @ 2018 Liqiang Nie | Last Update: 04-10-2018</div>
+    </div>
+</body>
+
+</html>
