@@ -182,10 +182,27 @@ ol li
 .sidebaritem2
 { text-align: center;
   width: 268px;
-  float: center;
+  float: left;
   margin: 0px 0px 23px 0px;
   border: 1px solid;
   padding: 14px 10px 14px 10px;
+}
+
+.sidebaritem2 h1
+{ margin: 0px; 
+  font-weight: normal;
+  padding: 0px 0px 16px 0px;
+  text-transform: uppercase;
+}
+
+.sidebaritem2 p
+{ line-height: 16px; 
+  padding: 0px 0px 8px 0px;
+}
+
+.sidebaritem2 a, .sidebaritem a:hover
+{ padding: 0px 0px 2px 19px;
+  text-decoration: none;
 }
 
 .sidebaritem h1
