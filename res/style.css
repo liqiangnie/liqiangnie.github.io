@@ -179,6 +179,15 @@ ol li
   padding: 14px 8px 14px 19px;
 }
 
+.sidebaritem2
+{ text-align: center;
+  width: 268px;
+  float: center;
+  margin: 0px 0px 23px 0px;
+  border: 1px solid;
+  padding: 14px 10px 14px 10px;
+}
+
 .sidebaritem h1
 { margin: 0px; 
   font-weight: normal;
