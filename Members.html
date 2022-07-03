@@ -111,22 +111,44 @@ list-style-type:disc;}
                 
 				
 		<h1> PhD Students</h1>
-		<table>
-			<tr>
-			<td>Name</td>
-			<td>Instruction period</td>
-			<td>Instruction position</td>
-			<td>Co-mentor</td>
-			<td>Graduate destination</td>
-			</tr>
-			<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			</tr>
-		</table>
+    <script>
+    layui.use('table', function() {
+        var table = layui.table;
+        //展示已知数据
+        table.render({
+            elem: '#demo',
+            size: 'sm',
+            cols: [
+                [ //标题栏
+                    { field: 'name', title: 'Name', align: 'center', width: 123 },
+                    { field: 'degree', title: 'Title', align: 'center', width: 70 , style: 'font-size:80%',},
+                    { field: 'mentor', title: 'Mentor', align: 'center', width: 109, style: 'font-size:80%', },
+                    { field: 'co-mentor', title: 'Co-mentor', align: 'center', width: 109, style: 'font-size:80%' },
+                    { field: 'time', title: 'Intake', align: 'center', width: 91 , style: 'font-size:80%',}
+                ]
+            ],
+            data: [{
+                    "name": "Lei Wang",
+                    "degree": "Visitor",
+                    "mentor": "",
+                    "co-mentor": "",
+                    "time": "2018.03.01"
+                }, {
+                    "name": "Qian Liu",
+                    "degree": "RA",
+                    "mentor": "Liqiang Nie",
+                    "co-mentor": "",
+                    "time": "2017.04.05"
+                }]
+                //,skin: 'line' //表格风格
+                ,
+            even: true,
+            page: true, //是否显示分页
+            //,limits: [5, 7, 10]
+            limit: 10 //每页默认显示的数量
+        });
+    });
+    </script>
 			<ul>
 			<li>Wei Xiao (PhD Candidate, 2018)</li>
 			<li>Zhenyang Li (PhD Candidate, from Chinese Academy of Sciences, 2019)</li>
