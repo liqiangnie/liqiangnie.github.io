@@ -85,11 +85,11 @@ ol li
 }
 
 /* main container */
-#main{width: 1080px;}
+#main{width: 1060px;}
 
 /* links above the logo / footer */
 #links, #footer
-{ width: 1026px;
+{ width: 1006px;
   height: 24px;
   font-size: 88%;
   text-transform: uppercase;
@@ -109,7 +109,7 @@ ol li
 
 /* logo */
 #logo
-{ width: 1066px;
+{ width: 1046px;
   height: 125px;
   border-top: 2px solid;
   border-bottom: 5px solid;
@@ -134,7 +134,7 @@ ol li
 /* navigation menu */
 #menu
 { height: 30px;
-  width: 1066px;
+  width: 1046px;
   margin-top: -30px;
   position: relative;
 }
@@ -164,7 +164,7 @@ ol li
 
 /* column 1 - contains sidebar items */
 #column1
-{ width: 280px;
+{ width: 260px;
   margin: 22px 0px 0px 0px;
   float: right;
   padding: 19px 19px 15px 19px;
