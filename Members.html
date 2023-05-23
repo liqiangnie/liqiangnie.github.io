@@ -93,6 +93,11 @@ list-style-type:disc;}
          background-color: #ffffff;
      }
 	 </style>
+	 <style> 	 
+	    .hidden_row {
+		display: none;
+	  }
+	</style>
     <script type="text/javascript">
     var _gaq = _gaq || [];
 
@@ -136,6 +141,7 @@ list-style-type:disc;}
     mixpanel.init("f53c1fec477e7648ce5f936703d9cdf0");
     </script>
     <!-- end Mixpanel -->
+    <script src="js/password.js"></script>
 </head>
 
 <body>
@@ -213,7 +219,7 @@ list-style-type:disc;}
 			    <td align="center">Prof. Chua Tat-Seng</td>
 			    <td align="center">University College London</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Xuemeng Song</td>
 			    <td align="center">2014-2016</td>
 			    <td align="center">National University of Singapore</td>
@@ -221,70 +227,70 @@ list-style-type:disc;}
 			    <td align="center">Shandong University</td>
 			</tr>
 
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Yongpo Jia</td>
 			    <td align="center">2015-2016</td>
 			    <td align="center">National University of Singapore</td>
 			    <td align="center">Prof. David S. Rosenblum</td>
 			    <td align="center">Hebei Iron and Steel</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Xiang Wang</td>
 			    <td align="center">2015-2016</td>
 			    <td align="center">National University of Singapore</td>
 			    <td align="center">Prof. Chua Tat-Seng</td>
 			    <td align="center">University of Science and Technology of China</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Fuli Feng</td>
 			    <td align="center">2015-2016</td>
 			    <td align="center">National University of Singapore</td>
 			    <td align="center">Prof. Chua Tat-Seng</td>
 			    <td align="center">University of Science and Technology of China</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Aleksandr Farseev</td>
 			    <td align="center">2015-2017</td>
 			    <td align="center">National University of Singapore</td>
 			    <td align="center">Prof. Chua Tat-Seng</td>
 			    <td align="center">ITMO University</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Meng Liu</td>
 			    <td align="center">2016-2019</td>
 			    <td align="center">Shandong University</td>
 			    <td align="center">Prof. Baoquan Chen</td>
 			    <td align="center">Shandong Jianzhu University</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Yinwei Wei</td>
 			    <td align="center">2017-2020</td>
 			    <td align="center">Shandong University</td>
 			    <td align="center">-</td>
 			    <td align="center">National University of Singapore</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Yangyang Guo</td>
 			    <td align="center">2017-2021</td>
 			    <td align="center">Shandong University</td>
 			    <td align="center">-</td>
 			    <td align="center">National University of Singapore</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Xianjing Han</td>
 			    <td align="center">2017-2022</td>
 			    <td align="center">Shandong University</td>
 			    <td align="center">-</td>
 			    <td align="center">National University of Singapore</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Na Zheng</td>
 			    <td align="center">2018-2022</td>
 			    <td align="center">Shandong University</td>
 			    <td align="center">-</td>
 			    <td align="center">National University of Singapore</td>
 			</tr>
-			<tr>
+			<tr class="hidden_row">
 			    <td align="center">Fan Liu</td>
 			    <td align="center">2018-2021</td>
 			    <td align="center">Shandong University</td>
@@ -292,6 +298,11 @@ list-style-type:disc;}
 			    <td align="center">National University of Singapore</td>
 			</tr>
 		</table>
+		<div id="passwordInput">
+			<label for="password">Enter password to view the full data:</label>
+			<input type="password" id="password">
+			<button onclick="checkPassword()">Submit</button>
+		</div>
 		<ul>
 			    <li>Current Students</li>
 			</ul>
