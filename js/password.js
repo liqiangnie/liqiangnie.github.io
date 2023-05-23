@@ -3,7 +3,7 @@ function checkPassword() {
   var password = passwordInput.value;
   
   // Replace "password123" with your desired password
-  if (password === "fulldata123") {
+  if (password === "iLearn2016") {
     var hiddenRows = document.querySelectorAll(".hidden_row");
     hiddenRows.forEach(function(row) {
       row.classList.remove("hidden_row");
