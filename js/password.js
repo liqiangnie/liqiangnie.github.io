@@ -18,7 +18,7 @@ function checkPassword() {
   passwordInput.value = "";
 }
 
-function checkPassword1() {
+function checkPasswordone() {
   var passwordInput = document.getElementById("password1");
   var password = passwordInput.value;
   
@@ -38,7 +38,7 @@ function checkPassword1() {
   passwordInput.value = "";
 }
 
-function checkPassword2() {
+function checkPasswordtwo() {
   var passwordInput = document.getElementById("password2");
   var password = passwordInput.value;
   
