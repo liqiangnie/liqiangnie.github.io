@@ -57,3 +57,24 @@ function checkPasswordtwo() {
   // Clear the password input field
   passwordInput.value = "";
 }
+
+function checkPasswordzero() {
+  var passwordInput = document.getElementById("password0");
+  var password = passwordInput.value;
+  
+  // Replace "password123" with your desired password
+  if (password === "iLearn2016") {
+    var hiddenRows = document.querySelectorAll(".hidden_row0");
+    hiddenRows.forEach(function(row) {
+      row.classList.remove("hidden_row0");
+    });
+    
+    document.getElementById("passwordInput0").style.display = "none";
+  } else {
+    alert("Incorrect password. Please try again.");
+  }
+  
+  // Clear the password input field
+  passwordInput.value = "";
+}
+
