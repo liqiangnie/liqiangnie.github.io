@@ -58,18 +58,18 @@ function checkPasswordtwo() {
   passwordInput.value = "";
 }
 
-function checkPasswordzero() {
-  var passwordInput = document.getElementById("password0");
+function checkPasswordthree() {
+  var passwordInput = document.getElementById("password3");
   var password = passwordInput.value;
   
   // Replace "password123" with your desired password
   if (password === "iLearn2016") {
-    var hiddenRows = document.querySelectorAll(".hidden_row0");
+    var hiddenRows = document.querySelectorAll(".hidden_row3");
     hiddenRows.forEach(function(row) {
-      row.classList.remove("hidden_row0");
+      row.classList.remove("hidden_row3");
     });
     
-    document.getElementById("passwordInput0").style.display = "none";
+    document.getElementById("passwordInput3").style.display = "none";
   } else {
     alert("Incorrect password. Please try again.");
   }
