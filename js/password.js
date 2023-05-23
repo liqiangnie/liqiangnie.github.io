@@ -17,3 +17,43 @@ function checkPassword() {
   // Clear the password input field
   passwordInput.value = "";
 }
+
+function checkPassword1() {
+  var passwordInput = document.getElementById("password1");
+  var password = passwordInput.value;
+  
+  // Replace "password123" with your desired password
+  if (password === "iLearn2016") {
+    var hiddenRows = document.querySelectorAll(".hidden_row1");
+    hiddenRows.forEach(function(row) {
+      row.classList.remove("hidden_row1");
+    });
+    
+    document.getElementById("passwordInput1").style.display = "none";
+  } else {
+    alert("Incorrect password. Please try again.");
+  }
+  
+  // Clear the password input field
+  passwordInput.value = "";
+}
+
+function checkPassword2() {
+  var passwordInput = document.getElementById("password2");
+  var password = passwordInput.value;
+  
+  // Replace "password123" with your desired password
+  if (password === "iLearn2016") {
+    var hiddenRows = document.querySelectorAll(".hidden_row2");
+    hiddenRows.forEach(function(row) {
+      row.classList.remove("hidden_row2");
+    });
+    
+    document.getElementById("passwordInput2").style.display = "none";
+  } else {
+    alert("Incorrect password. Please try again.");
+  }
+  
+  // Clear the password input field
+  passwordInput.value = "";
+}
