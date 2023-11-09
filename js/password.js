@@ -78,3 +78,23 @@ function checkPasswordthree() {
   passwordInput.value = "";
 }
 
+function checkPasswordfour() {
+  var passwordInput = document.getElementById("password4");
+  var password = passwordInput.value;
+  
+  // Replace "password123" with your desired password
+  if (password === "iLearn2016") {
+    var hiddenRows = document.querySelectorAll(".hidden_row4");
+    hiddenRows.forEach(function(row) {
+      row.classList.remove("hidden_row4");
+    });
+    
+    document.getElementById("passwordInput4").style.display = "none";
+  } else {
+    alert("Incorrect password. Please try again.");
+  }
+  
+  // Clear the password input field
+  passwordInput.value = "";
+}
+
