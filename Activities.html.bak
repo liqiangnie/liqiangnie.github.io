@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Liqiang's 招生.</title>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <!-- **** layout stylesheet **** -->
+    <link rel="stylesheet" type="text/css" href="res/style.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 800px)" href="res/style-min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 800px) and (max-device-width: 1600px)" href="res/style-middle.css">
+    <!--<link rel="stylesheet" type="text/css" media="screen and (min-width: 1600px)" href="res/style.css">
+  <!-- **** colour scheme stylesheet **** -->
+    <link rel="stylesheet" type="text/css" href="res/colour.css" />
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+
+    _gaq.push(['_setAccount', 'UA-27528284-1']);
+
+    _gaq.push(['_trackPageview']);
+
+
+
+
+    (function() {
+
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+
+    })();
+    </script>
+    <!-- start Mixpanel -->
+    <script type="text/javascript">
+    (function(d, c) {
+        var a, b, g, e;
+        a = d.createElement("script");
+        a.type = "text/javascript";
+        a.async = !0;
+        a.src = ("https:" === d.location.protocol ? "https:" : "http:") + '//api.mixpanel.com/site_media/js/api/mixpanel.2.js';
+        b = d.getElementsByTagName("script")[0];
+        b.parentNode.insertBefore(a, b);
+        c._i = [];
+        c.init = function(a, d, f) {
+            var b = c;
+            "undefined" !== typeof f ? b = c[f] = [] : f = "mixpanel";
+            g = "disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
+            for (e = 0; e < g.length; e++)(function(a) { b[a] = function() { b.push([a].concat(Array.prototype.slice.call(arguments, 0))) } })(g[e]);
+            c._i.push([a, d, f])
+        };
+        window.mixpanel = c
+    })(document, []);
+    mixpanel.init("f53c1fec477e7648ce5f936703d9cdf0");
+    </script>
+    <!-- end Mixpanel -->
+</head>
+
+<body>
+    <div id="main">
+        <div id="links">
+            <!-- **** INSERT LINKS HERE **** -->
+            <a href="http://www.xjtu.edu.cn">XJTU</a> | <a href="http://www.nus.edu.sg">
+    NUS</a> | <a href="http://www.sdu.edu.cn/">SDU</a> </div>
+        <div id="logo">
+            <h1>Liqiang Nie</h1>
+            <h2>Welcome to Liqiang's homepage:)</h2>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a id="selected" href="index.html">Home</a></li>
+                <li> <a href="Research.html">Research</a></li>
+                <li> <a href="Links.html">Codes and Data</a></li>
+                <li> <a href="Projects.html">Projects</a></li>
+                <li><a href="Alumni.html">Alumni</a></li>
+                <li> <a style="color:red;" href="Activities.html"> <strong> 招生</strong></a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="column1">
+                <div class="sidebaritem">
+                    <h1>Contact</h1>
+                    <!-- **** INSERT NEWS ITEMS HERE **** -->
+                    <h2>Address:</h2>
+                    <p align="justify" style="font-size: 75%">
+                       Shandong University (Tsingtao Campus), 72 Binhai Road, Jimo Qingdao, Shandong Province, China , Zipcode: 266237
+                    </p>
+                    <h2>Email:</h2>
+                    <p style="font-size: 80%">nieliqiang@gmail.com</p>
+                </div>
+            </div>
+            <div id="column2">
+                <h1> 招生 </h1>
+                <p style="text-align:justify; text-justify:inter-ideograph;">
+                    聂礼强博士现为山东大学计算机学院教授、博导，兼聘齐鲁工业大学（山东省科学院）人工智能研究院院长。入选山东大学“齐鲁青年学者”和第十三批国家“青年千人”计划。 聂博士于2009年和2013年分别从西安交通大学和新加坡国立大学获得本科和博士学位。博士毕业后，在新加坡国立大学做三年多研究员（Research Fellow）。主要研究领域为多媒体计算、信息检索、以及它们在健康领域的应用 。已发表CCF A类会议以及IEEE/ACM Trans系列期刊共80余篇，Google Scholar引用约两千次。个人理想是，根据工业的需求和数据，做最实用的研究。
+                </p>
+                <p style="text-align:justify; text-justify:inter-ideograph;">
+                    培养学生的理念是“学术上立规矩，生活上无大小”。承诺为博士生提供至少1年的海外顶级实验室交流机会，并提供充足的生活保障（约1万人民币每月）； 鼓励读书期间学习驾驶、参加马拉松、恋爱、度假、创业等。针对博士生，根据以往带学生经验，在努力工作的情况下，3-4年可以达到博士毕业标准； 针对想去工业界的硕士生，会重点培养动手能力；针对想继续学术深造的硕士生，会按博士标准培养，并全力推荐到海内外顶级实验室。  聂礼强博士计划于2019年招收2名博士和4-6名硕士（即2019年入学，保送生优先）。同时招收若干名高年级本科实习生。招生对象是计算机、软件、自动化、数学、和统计等相关专业学生。 依托单位是山东大学计算机学院（青岛校区）。
+                </p>
+                <p style="text-align:justify; text-justify:inter-ideograph;">
+                    博士毕业标准（同时满足）：
+                    <br>1）三篇一作CCF A类长文会议或者IEEE/ACM汇刊；
+                    <br> 2）半程马拉松，男生3个小时以内，女生3个小时15分钟以内；
+                    <br>3）拿到驾照 （我资助您）；
+                    <br>4）至少一年的海外交流（我资助您）；
+                    <br>5）经历assistance，dependence，independence和leadership四个阶段。
+                </p>
+                <p style="text-align:justify; text-justify:inter-ideograph;">
+                    希望申请我的学生具有以下基本素养：
+                    <br>1）有很强的上进心和科研热情；
+                    <br>2）至少熟悉一门编程语言；
+                    <br>3）具有扎实的英语和数学基础。
+                    <br>有意向的同学可以电邮咨询：
+                    <a style="color:red;" href="mailto:nieliqiang@gmail.com">nieliqiang@sdu.edu.cn</a>。
+                </p>
+            </div>
+        </div>
+        <div id="footer">
+            copyright @ 2018 Liqiang Nie | Last Update: 04-10-2018</div>
+    </div>
+</body>
+
+</html>

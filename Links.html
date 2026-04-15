@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+    <title>Liqiang's Codes and Data.</title>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <!-- **** layout stylesheet **** -->
+    <link rel="stylesheet" type="text/css" href="res/style.css">
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 800px)" href="res/style-min.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 800px) and (max-device-width: 1600px)" href="res/style-middle.css">
+    <!--<link rel="stylesheet" type="text/css" media="screen and (min-width: 1600px)" href="res/style.css">
+  <!-- **** colour scheme stylesheet **** -->
+    <link rel="stylesheet" type="text/css" href="res/colour.css"/>
+	<style type="text/css" media="screen and (max-device-width: 800px)">
+     table.gridtable {
+	 width: 100%;
+         font-family: verdana,arial,sans-serif;
+         font-size:12px;
+         color:#2f332b;
+         border-width: 1px;
+         border-color: #d9dfcf;
+         border-collapse: collapse;
+         background-color: #ffffff;
+         box-shadow: 0 2px 6px rgba(101, 111, 87, 0.06);
+     }
+     table.gridtable th {
+         border-width: 1px;
+         padding: 10px 8px;
+         border-style: solid;
+         border-color: #dde3d4;
+         border-bottom-width: 2px;
+         border-bottom-color: #83B82E;
+         background-color: #ffffff;
+         color: #4a4a46;
+         font-weight: bold;
+     }
+     table.gridtable td {
+         border-width: 1px;
+         padding: 8px;
+         border-style: solid;
+         border-color: #e6eadf;
+         background-color: #fefefe;
+     }
+     table.gridtable tr:nth-child(even) td {
+         background-color: #fcfcfa;
+     }
+     table.gridtable tr:hover td {
+         background-color: #f7faef;
+     }
+	 </style>
+	
+	<style type="text/css"  media="screen and (min-width: 800px) and (max-device-width: 1600px)">
+     table.gridtable {
+	 width: 100%;
+         font-family: verdana,arial,sans-serif;
+         font-size:12px;
+         color:#2f332b;
+         border-width: 1px;
+         border-color: #d9dfcf;
+         border-collapse: collapse;
+         background-color: #ffffff;
+         box-shadow: 0 2px 6px rgba(101, 111, 87, 0.06);
+     }
+     table.gridtable th {
+         border-width: 1px;
+         padding: 10px 8px;
+         border-style: solid;
+         border-color: #dde3d4;
+         border-bottom-width: 2px;
+         border-bottom-color: #83B82E;
+         background-color: #ffffff;
+         color: #4a4a46;
+         font-weight: bold;
+     }
+     table.gridtable td {
+         border-width: 1px;
+         padding: 8px;
+         border-style: solid;
+         border-color: #e6eadf;
+         background-color: #fefefe;
+     }
+     table.gridtable tr:nth-child(even) td {
+         background-color: #fcfcfa;
+     }
+     table.gridtable tr:hover td {
+         background-color: #f7faef;
+     }
+	 </style>
+	
+	<style type="text/css" media="screen and (min-device-width: 1600px)">
+     table.gridtable {
+         width: 100%;
+         font-family: verdana,arial,sans-serif;
+         font-size:16px;
+         color:#2f332b;
+         border-width: 1px;
+         border-color: #d9dfcf;
+         border-collapse: collapse;
+         background-color: #ffffff;
+         box-shadow: 0 2px 6px rgba(101, 111, 87, 0.06);
+     }
+     table.gridtable th {
+         border-width: 1px;
+         padding: 10px 8px;
+         border-style: solid;
+         border-color: #dde3d4;
+         border-bottom-width: 2px;
+         border-bottom-color: #83B82E;
+         background-color: #ffffff;
+         color: #4a4a46;
+         font-weight: bold;
+     }
+     table.gridtable td {
+         border-width: 1px;
+         padding: 8px;
+         border-style: solid;
+         border-color: #e6eadf;
+         background-color: #fefefe;
+     }
+     table.gridtable tr:nth-child(even) td {
+         background-color: #fcfcfa;
+     }
+     table.gridtable tr:hover td {
+         background-color: #f7faef;
+     }
+	 </style>
+    <style type="text/css">
+     #column1 {
+         display: none;
+     }
+
+     #column2 {
+         width: auto;
+         float: none;
+         padding: 2px 42px 15px 19px;
+     }
+
+    </style>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+
+    _gaq.push(['_setAccount', 'UA-27528284-1']);
+
+    _gaq.push(['_trackPageview']);
+
+
+
+
+    (function() {
+
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+
+    })();
+
+    function extractLastPage(linkHeader) {
+        var match;
+
+        if (!linkHeader) {
+            return 1;
+        }
+
+        match = linkHeader.match(/<[^>]*[?&]page=(\d+)[^>]*>; rel="last"/);
+        if (match) {
+            return parseInt(match[1], 10);
+        }
+
+        if (linkHeader.indexOf('rel="next"') !== -1) {
+            return 2;
+        }
+
+        return 1;
+    }
+
+    function fetchRepoPage(page) {
+        return fetch(
+            'https://api.github.com/orgs/iLearn-Lab/repos?type=public&per_page=100&page=' + page,
+            {
+                headers: {
+                    'Accept': 'application/vnd.github+json'
+                }
+            }
+        ).then(function(response) {
+            if (!response.ok) {
+                throw new Error('Failed to fetch repository list.');
+            }
+
+            return response.json().then(function(data) {
+                return {
+                    data: data,
+                    link: response.headers.get('Link')
+                };
+            });
+        });
+    }
+
+    function updateILearnRepoCount() {
+        var repoCountNode = document.getElementById('ilearn-repo-count');
+
+        if (!repoCountNode || !window.fetch) {
+            return;
+        }
+
+        fetchRepoPage(1)
+            .then(function(firstPage) {
+                var lastPage = extractLastPage(firstPage.link);
+                var requests = [];
+                var page;
+                var total = Array.isArray(firstPage.data) ? firstPage.data.length : 0;
+
+                if (lastPage === 1) {
+                    repoCountNode.innerHTML = total;
+                    return null;
+                }
+
+                for (page = 2; page <= lastPage; page += 1) {
+                    requests.push(fetchRepoPage(page));
+                }
+
+                return Promise.all(requests).then(function(restPages) {
+                    restPages.forEach(function(result) {
+                        if (Array.isArray(result.data)) {
+                            total += result.data.length;
+                        }
+                    });
+
+                    repoCountNode.innerHTML = total;
+                });
+            })
+            .catch(function() {
+                return;
+            });
+    }
+
+    if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', updateILearnRepoCount, false);
+    } else if (window.attachEvent) {
+        window.attachEvent('onload', updateILearnRepoCount);
+    }
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="links">
+            <!-- **** INSERT LINKS HERE **** -->
+            <a href="http://www.xjtu.edu.cn">XJTU</a> | <a href="http://www.nus.edu.sg"> 
+		NUS</a> |
+<!-- 		<a href="http://cs.hitsz.edu.cn/">HITSZ</a>  | -->
+            <a style="text-transform:none" href="http://ilearn.hitsz.edu.cn/index.htm">iLearn</a></div>
+        <div id="logo">
+            <h1>Liqiang Nie</h1>
+            <h2>Welcome to Liqiang's homepage:)</h2>
+        </div>
+        <div id="menu">
+            <ul>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Research.html">Research</a></li>
+                    <li><a id="selected" href="Links.html">Codes and Data</a></li>
+                    <li><a href="Projects.html">Projects</a></li>
+                    <li><a href="Members.html">Members</a></li>
+                    <li> <a style="color:red;" href="Activities.html"> <strong> 招生</strong></a></li>
+                </ul>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="column1">
+<!--                 <div class="sidebaritem"> -->
+<!--                     <h1>Contact</h1>
+		    <h2>Address:</h2>
+                    <p align="justify" style="font-size: 100%">
+                        Room 1421, Building L, Harbin Institute of Technology (Shenzhen), Shenzhen, China  PC, Postcode: 518055
+                    </p>
+                    <h2>Email:</h2>
+                    <p style="font-size: 100%">nieliqiang@gmail.com</p>
+                    <h2>Tel:</h2>
+                    <p style="font-size: 100%">(0755) 2690 5221</p> -->
+<!--                 </div> -->
+                <!---
+        <div class="sidebaritem">
+          <h1>additional links</h1>
+          <div class="sbilinks">
+            <ul>
+              <li><a href="http://www.opendesigns.org">open designs</a></li>
+              <li><a href="http://www.w3schools.com/xhtml/default.asp">learn XHTML</a></li>
+              <li><a href="http://www.w3schools.com/css/default.asp">learn CSS</a></li>
+              <li><a href="http://www.mozilla.com/firefox">get firefox</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="sidebaritem">
+          <h1>other information</h1>
+          <p>
+            This space can be used for additional information such as a contact phone number, address
+            or maybe even a graphic.
+          </p>
+        </div>
+        -->
+            </div>
+            <div id="column2">
+                <h1>Codes & Data</h1>
+                <p> <strong>A paper without accessible codes and data is a pure paper; Otherwise, it is beyond a paper, maybe a work of art. Our team has released <span id="ilearn-repo-count">170</span> open-source repositories, and all related code and data are available at <a href="https://github.com/iLearn-Lab">https://github.com/iLearn-Lab</a>. </strong></p>
+                
+				
+				<table class="gridtable">
+				<tr>
+				<th style="white-space: nowrap;" align="center">Year</th>
+				<th style="white-space: nowrap;" align="center">Published at</th>
+				<th style="white-space: nowrap;" align="center">Title</th>
+				<th style="white-space: nowrap;" align="center">Paper</th>
+				<th style="white-space: nowrap;" align="center">Codes and Data</th>
+				</tr>
+						
+				<tr><td>2017</td><td align="center">WWW</td><td>Neural Collaborative Filtering</td><td align="center">
+				<a href="paper/p173-he.pdf">PDF</a></td><td align="center"><a href="https://github.com/hexiangnan/neural_collaborative_filtering"><img alt="GitHub stars" src="https://img.shields.io/github/stars/hexiangnan/neural_collaborative_filtering?style=social" /></a></td></tr>
+
+				<tr><td>2026</td><td align="center">-</td><td>A Survey on Diffusion Policy for Robotic Manipulation</td>
+				<td align="center"><a href="https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.174378343.39356214/v1">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/VLA-Diffusion-Policy-Robotics"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/VLA-Diffusion-Policy-Robotics?style=social" /></a></td></tr>
+
+				<tr><td>2019</td><td align="center">ACM MM</td><td>MMGCN: Multi-modal Graph Convolution Network for Personalized Recommendation of Micro-video </td>
+				<td align="center"><a href="paper/MMGCN.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/weiyinwei/MMGCN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/weiyinwei/MMGCN?style=social" /></a></td></tr>
+
+				<tr><td>2025</td><td align="center">ACM TOIS</td><td>A Comprehensive Survey on Composed Image Retrieval</td>
+				<td align="center"><a href="https://dl.acm.org/doi/full/10.1145/3767328">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval?style=social" /></a></td></tr>
+
+				<tr><td>2017</td><td align="center">CVPR</td><td>SCA-CNN: Spatial and Channel-Wise Attention in Convolutional Networks for Image Captioning</td><td align="center">
+				<a href="paper/scacnn.pdf">PDF</a></td><td align="center"><a href="https://github.com/zjuchenlong/sca-cnn.cvpr17"><img alt="GitHub stars" src="https://img.shields.io/github/stars/zjuchenlong/sca-cnn.cvpr17?style=social" /></a></td></tr>
+
+				<tr><td>2025</td><td align="center">NeurIPS</td><td>CogVLA: Cognition-Aligned Vision-Language-Action Models via Instruction-Driven Routing &amp; Sparsification</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2508.21046.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS25-CogVLA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/NeurIPS25-CogVLA?style=social" /></a></td></tr>
+				
+				<tr><td>2024</td><td align="center">NeurIPS</td><td>Optimus-1: Hybrid Multimodal Memory Empowered Agents Excel in Long-Horizon Tasks</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2408.03615.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS24-Optimus-1"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/NeurIPS24-Optimus-1?style=social" /></a></td></tr>
+
+				<tr><td>2025</td><td align="center">ACL</td><td>AdaReTaKe: Adaptive Redundancy Reduction for Long-Context Video-Language Understanding</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2503.12559.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACL25-AdaReTaKe"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACL25-AdaReTaKe?style=social" /></a></td></tr>
+
+
+				<tr><td>2026</td><td align="center">TPAMI</td><td>A Survey on Video Temporal Grounding with Multimodal Large Language Model</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2508.10922.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding?style=social" /></a></td></tr>
+
+				<tr><td>2018</td><td align="center">WWW</td><td>TEM: Tree-enhanced Embedding Model for Explainable Recommendation</td><td align="center">
+				<a href="paper/p1543-wang.pdf">PDF</a></td><td align="center"><a href="https://github.com/xiangwang1223/TEM"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xiangwang1223/TEM?style=social" /></a></td></tr>
+
+				<tr><td>2021</td><td align="center">ACM MM</td><td>Contrastive Learning for Cold-Start Recommendation</td>
+				<td align="center"><a href="https://dl.acm.org/doi/epdf/10.1145/3474085.3475665">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/MM21-CLCRec"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/MM21-CLCRec?style=social" /></a></td></tr>
+
+				<tr><td>2025</td><td align="center">ACM MM</td><td>UAV-ON: A Benchmark for Open-World Object Goal Navigation with Aerial Agents</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2508.00288.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACMMM25-UAV_ON"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACMMM25-UAV_ON?style=social" /></a></td></tr>
+
+				<tr><td>2021</td><td align="center">SIGIR</td><td>Dynamic Modality Interaction Modeling for Image-Text Retrieval</td>
+				<td align="center"><a href="paper/SIGIR21_quleigang.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/SIGIR21-DIME"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/SIGIR21-DIME?style=social" /></a></td></tr>
+
+				<tr><td>2025</td><td align="center">ACL</td><td>GUI-explorer: Autonomous Exploration and Mining of Transition-aware Knowledge for GUI Agent</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2505.16827.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACL25-GUI-explorer"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACL25-GUI-explorer?style=social" /></a></td></tr>
+
+				<tr><td>2024</td><td align="center">ACM MM</td><td>Diffusion Facial Forgery Detection</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2401.15859.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/MM24-DiFF"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/MM24-DiFF?style=social" /></a></td></tr>
+
+
+
+
+
+				<!-- <tr><td>2026</td><td align="center">CVPR</td><td>HiconAgent: History Context-aware Policy Optimization for GUI Agents</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2512.01763.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/CVPR26-HiconAgent"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/CVPR26-HiconAgent?style=social" /></a></td></tr>
+				
+				<tr><td>2026</td><td align="center">AAAI</td><td>H-GAR: A Hierarchical Interaction Framework via Goal-Driven Observation-Action Refinement for Robotic Manipulation</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2511.17079.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/AAAI26-H-GAR"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/AAAI26-H-GAR?style=social" /></a></td></tr>
+				
+				<tr><td>2026</td><td align="center">AAAI</td><td>SemanticVLA: Semantic-Aligned Sparsification and Enhancement for Efficient Robotic Manipulation</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2511.10518.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/AAAI26-SemanticVLA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/AAAI26-SemanticVLA?style=social" /></a></td></tr>
+				
+
+
+
+
+
+
+
+				<tr><td>2025</td><td align="center">NeurIPS</td><td>VT-FSL: Bridging Vision and Text with LLMs for Few-Shot Learning</td>
+				<td align="center"><a href="https://openreview.net/pdf/521c2d2f24d89aa54641a2bb0276e4fd1a5cebf4.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS25-VTFSL"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/NeurIPS25-VTFSL?style=social" /></a></td></tr>
+				
+				<tr><td>2025</td><td align="center">CVPR</td><td>DKDM: Data-Free Knowledge Distillation for Diffusion Models with Any Architecture</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2409.03550.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/CVPR25-DKDM"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/CVPR25-DKDM?style=social" /></a></td></tr>
+				
+				
+				
+				
+				
+				<tr><td>2024</td><td align="center">ECCV</td><td>GenView: Enhancing View Quality with Pretrained Generative Model for Self-Supervised Learning</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2403.12003.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ECCV2024-genview"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ECCV2024-genview?style=social" /></a></td></tr>
+				
+				<tr><td>2024</td><td align="center">SIGIR</td><td>Simple but Effective Raw-Data Level Multimodal Fusion for Composed Image Retrieval</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2404.15875.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/SIGIR24-DQU-CIR"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/SIGIR24-DQU-CIR?style=social" /></a></td></tr>
+				
+				
+				<tr><td>2022</td><td align="center">ACL</td><td>MERIt: Meta-Path Guided Contrastive Learning for Logical Reasoning</td>
+				<td align="center"><a href="https://arxiv.org/pdf/2203.00357.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACL22-MERIt"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACL22-MERIt?style=social" /></a></td></tr>
+				
+				<tr><td>2022</td><td align="center">CVPR</td><td>Stacked Hybrid-Attention and Group Collaborative Learning for Unbiased Scene Graph Generation</td>
+				<td align="center"><a href="paper/xingning_dong.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/dongxingning/SHA-GCL-for-SGG"><img alt="GitHub stars" src="https://img.shields.io/github/stars/dongxingning/SHA-GCL-for-SGG?style=social" /></a></td></tr>	
+				
+				<tr><td>2022</td><td align="center">ACL</td><td>MMCoQA: Conversational Question Answering over Text, Tables, and Images</td>
+				<td align="center"><a href="https://aclanthology.org/2022.acl-long.290/">PDF</a></td>
+				<td align="center"><a href="https://github.com/liyongqi67/MMCoQA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/liyongqi67/MMCoQA?style=social" /></a></td></tr>
+				
+				<tr><td>2022</td><td align="center">SIGIR</td><td>User-controllable Recommendation Against Filter Bubbles</td>
+				<td align="center"><a href="https://arxiv.org/abs/2204.13844">PDF</a></td>
+				<td align="center"><a href="https://github.com/WenjieWWJ/UCRS"><img alt="GitHub stars" src="https://img.shields.io/github/stars/WenjieWWJ/UCRS?style=social" /></a></td></tr>
+					
+				
+				<tr><td>2021</td><td align="center">WWW</td><td>Interest-aware Message-Passing GCN for Recommendation</td>
+				<td align="center"><a href="https://dl.acm.org/doi/abs/10.1145/3442381.3449986">PDF</a></td>
+				<td align="center"><a href="https://github.com/iLearn-Lab/WWW21-IMPGCN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/WWW21-IMPGCN?style=social" /></a></td></tr>
+				
+				<tr><td>2021</td><td align="center">TIP</td><td>Conversational Image Search</td>
+				<td align="center"><a href="paper/2021TIP_Contextual_Image_Search.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/SparkJiao/LARCH"><img alt="GitHub stars" src="https://img.shields.io/github/stars/SparkJiao/LARCH?style=social" /></a></td></tr>
+				
+				<tr><td>2021</td><td align="center">TIP</td><td>Video Moment Localization via Deep Cross-Modal Hashing</td>
+				<td align="center"><a href="paper/CMHN_Video Moment Localization via Deep Cross-modal Hashing.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/Huyp777/CMHN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Huyp777/CMHN?style=social" /></a></td></tr>
+					
+				<tr><td>2021</td><td align="center">TIP</td><td>Coarse-to-Fine Semantic Alignment for Cross-Modal Moment Localization</td>
+				<td align="center"><a href="paper/Coarse-to-Fine Semantic Alignment for Cross-Modal Moment Localization.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/Huyp777/CSUN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Huyp777/CSUN?style=social" /></a></td></tr>
+				
+				
+				
+					
+
+				<tr><td>2021</td><td align="center">SIGIR</td><td>Multimodal Activation: Awakening Dialog Robots without Wake Words</td>
+				<td align="center"><a href="paper/Multi_acti_final-0505.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/Jill0001/MAS"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Jill0001/MAS?style=social" /></a></td></tr>
+			
+					
+					
+				<tr><td>2020</td><td align="center">TOIS</td><td>Fine-Grained Privacy Detection with Graph-Regularized Hierarchical Attentive Representation Learning</td>
+				<td align="center"><a href="https://xuemengsong.github.io/TOIS2020_1.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/Fine-grainedPrivacyDetection/GrHA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Fine-grainedPrivacyDetection/GrHA?style=social" /></a></td></tr>
+									
+					
+				<tr><td>2020</td><td align="center">ACM MM</td><td>Graph-Refined Convolutional Network for Multimedia Recommendation with Implicit Feedback</td>
+				<td align="center"><a href="https://dl.acm.org/doi/10.1145/3394171.3413556">PDF</a></td>
+				<td align="center"><a href="https://github.com/weiyinwei/GRCN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/weiyinwei/GRCN?style=social" /></a></td></tr>
+
+					
+				<tr><td>2019</td><td align="center">ACM MM</td><td>Personalized Hashtag Recommendation for Micro-videos</td>
+				<td align="center"><a href="paper/HashtagRec.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/weiyinwei/GCN_PHR"><img alt="GitHub stars" src="https://img.shields.io/github/stars/weiyinwei/GCN_PHR?style=social" /></a></td></tr>
+					
+				
+				<tr><td>2019</td><td align="center">ACM MM</td><td>User Diverse Preference Modeling by Multimodal Attentive Metric Learning</td>
+				<td align="center"><a href="paper/User Diverse Preference Modeling by Multimodal A entive Metric Learning.pdf">PDF</a></td>
+				<td align="center"><a href="https://github.com/liufancs/MAML"><img alt="GitHub stars" src="https://img.shields.io/github/stars/liufancs/MAML?style=social" /></a></td></tr>
+					
+				<tr><td>2019</td><td align="center">TOIS</td><td>Attentive Long Short-Term Preference Modeling for Personalized Product Search</td><td align="center"><a href="paper/a19-guo.pdf">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/ALSTP"><img alt="GitHub stars" src="https://img.shields.io/github/stars/guoyang9/ALSTP?style=social" /></a></td></tr>
+								
+								
+				<tr><td>2019</td><td align="center">SIGIR</td><td>Quantifying and Alleviating the Language Prior Problem in Visual Question Answering</td><td align="center"><a href="https://arxiv.org/pdf/1905.04877">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/vqa-prior"><img alt="GitHub stars" src="https://img.shields.io/github/stars/guoyang9/vqa-prior?style=social" /></a></td></tr>
+				
+				<tr><td>2019</td><td align="center">SIGIR</td><td>User Attention-guided Multimodal Dialog Systems</td><td align="center"><a href="https://xuemengsong.github.io/sigir2019_umd.pdf">PDF</a></td><td align="center"><a href="https://github.com/ChenTsuei/UMD"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ChenTsuei/UMD?style=social" /></a></td></tr>
+								
+				
+				<tr><td>2018</td><td align="center">ACM MM</td><td>Multi-modal Preference Modeling for Product Search</td><td align="center">
+				<a href="paper/p1865-guo.pdf">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/TranSearch"><img alt="GitHub stars" src="https://img.shields.io/github/stars/guoyang9/TranSearch?style=social" /></a></td></tr>
+
+				
+				<tr><td>2017</td><td align="center">ACM MM</td><td>Laplacian-Steered Neural Style Transfer</td><td align="center">
+				<a href="paper/p1716-li.pdf">PDF</a></td><td align="center"><a href="https://github.com/askerlee/lapstyle"><img alt="GitHub stars" src="https://img.shields.io/github/stars/askerlee/lapstyle?style=social" /></a></td></tr>
+				 -->
+
+				
+				</table>
+		    <a style="padding-left:0px;" href="https://clustrmaps.com/site/pjgu"><img style="visibility: hidden; border:0px; width: 0; height: 0" src="//clustrmaps.com/map_v2.png?cl=ffffff&w=150&t=tt&d=d-ELQGkIrTCQRRtly6woZicODts2c7CQlPLb84WBdEE"/></a>
+                
+            </div>
+        </div>
+        <div id="footer">
+            copyright @ 2022 Liqiang Nie | Last Update: 04-09-2026</div>
+    </div>
+</body>
+
+</html>
