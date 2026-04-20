@@ -4,6 +4,7 @@ import argparse
 import json
 import math
 import re
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -119,9 +120,30 @@ def update_html_targets(activities_target, index_target, formatted_text, exact_t
     index_path.write_text(updated_index_html, encoding="utf-8")
 
 
+def load_existing_payload(output):
+    output_path = Path(output)
+    return json.loads(output_path.read_text(encoding="utf-8"))
+
+
+def should_keep_existing_snapshot(error):
+    return isinstance(error, urllib.error.HTTPError) and error.code == 403
+
+
 def main():
     args = parse_args()
-    html = load_html(args)
+    try:
+        html = load_html(args)
+    except urllib.error.URLError as error:
+        if not should_keep_existing_snapshot(error):
+            raise
+
+        payload = load_existing_payload(args.output)
+        print(
+            "Google Scholar returned HTTP 403; keeping existing citation snapshot "
+            f"from {payload.get('updated_at', args.output)}."
+        )
+        return
+
     citations_all = extract_citations_all(html)
     payload = {
         "source": args.url,
