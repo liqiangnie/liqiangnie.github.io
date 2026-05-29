@@ -1,100 +1,47 @@
-function checkPassword() {
-  var passwordInput = document.getElementById("password");
-  var password = passwordInput.value;
-  
-  // Replace "password123" with your desired password
-  if (password === "iLearn2016") {
-    var hiddenRows = document.querySelectorAll(".hidden_row");
-    hiddenRows.forEach(function(row) {
-      row.classList.remove("hidden_row");
-    });
-    
-    document.getElementById("passwordInput").style.display = "none";
-  } else {
-    alert("Incorrect password. Please try again.");
-  }
-  
-  // Clear the password input field
-  passwordInput.value = "";
-}
+(function() {
+  function unlockRows(passwordInputId, rowClassName, passwordBoxId) {
+    var passwordInput = document.getElementById(passwordInputId);
+    var password = passwordInput.value;
 
-function checkPasswordone() {
-  var passwordInput = document.getElementById("password1");
-  var password = passwordInput.value;
-  
-  // Replace "password123" with your desired password
-  if (password === "iLearn2016") {
-    var hiddenRows = document.querySelectorAll(".hidden_row1");
-    hiddenRows.forEach(function(row) {
-      row.classList.remove("hidden_row1");
-    });
-    
-    document.getElementById("passwordInput1").style.display = "none";
-  } else {
-    alert("Incorrect password. Please try again.");
-  }
-  
-  // Clear the password input field
-  passwordInput.value = "";
-}
+    window.verifyPasswordHash(password)
+      .then(function(isValid) {
+        if (!isValid) {
+          alert('Incorrect password. Please try again.');
+          return;
+        }
 
-function checkPasswordtwo() {
-  var passwordInput = document.getElementById("password2");
-  var password = passwordInput.value;
-  
-  // Replace "password123" with your desired password
-  if (password === "iLearn2016") {
-    var hiddenRows = document.querySelectorAll(".hidden_row2");
-    hiddenRows.forEach(function(row) {
-      row.classList.remove("hidden_row2");
-    });
-    
-    document.getElementById("passwordInput2").style.display = "none";
-  } else {
-    alert("Incorrect password. Please try again.");
-  }
-  
-  // Clear the password input field
-  passwordInput.value = "";
-}
+        var hiddenRows = document.querySelectorAll('.' + rowClassName);
+        hiddenRows.forEach(function(row) {
+          row.classList.remove(rowClassName);
+        });
 
-function checkPasswordthree() {
-  var passwordInput = document.getElementById("password3");
-  var password = passwordInput.value;
-  
-  // Replace "password123" with your desired password
-  if (password === "iLearn2016") {
-    var hiddenRows = document.querySelectorAll(".hidden_row3");
-    hiddenRows.forEach(function(row) {
-      row.classList.remove("hidden_row3");
-    });
-    
-    document.getElementById("passwordInput3").style.display = "none";
-  } else {
-    alert("Incorrect password. Please try again.");
+        document.getElementById(passwordBoxId).style.display = 'none';
+      })
+      .catch(function(error) {
+        alert(error.message || 'Unable to verify password.');
+      })
+      .finally(function() {
+        passwordInput.value = '';
+      });
   }
-  
-  // Clear the password input field
-  passwordInput.value = "";
-}
 
-function checkPasswordfour() {
-  var passwordInput = document.getElementById("password4");
-  var password = passwordInput.value;
-  
-  // Replace "password123" with your desired password
-  if (password === "iLearn2016") {
-    var hiddenRows = document.querySelectorAll(".hidden_row4");
-    hiddenRows.forEach(function(row) {
-      row.classList.remove("hidden_row4");
-    });
-    
-    document.getElementById("passwordInput4").style.display = "none";
-  } else {
-    alert("Incorrect password. Please try again.");
-  }
-  
-  // Clear the password input field
-  passwordInput.value = "";
-}
+  window.checkPassword = function() {
+    unlockRows('password', 'hidden_row', 'passwordInput');
+  };
 
+  window.checkPasswordone = function() {
+    unlockRows('password1', 'hidden_row1', 'passwordInput1');
+  };
+
+  window.checkPasswordtwo = function() {
+    unlockRows('password2', 'hidden_row2', 'passwordInput2');
+  };
+
+  window.checkPasswordthree = function() {
+    unlockRows('password3', 'hidden_row3', 'passwordInput3');
+  };
+
+  window.checkPasswordfour = function() {
+    unlockRows('password4', 'hidden_row4', 'passwordInput4');
+  };
+})();

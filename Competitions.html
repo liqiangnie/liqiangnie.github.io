@@ -23,26 +23,9 @@
         s.parentNode.insertBefore(ga, s);
     })();
 
-    function verifyCertificatePassword(event) {
-        var password = prompt('Please enter the password to view this certificate:');
-
-        if (password !== 'iLearn2016') {
-            if (event && event.preventDefault) {
-                event.preventDefault();
-            } else {
-                window.event.returnValue = false;
-            }
-
-            if (password !== null) {
-                alert('Incorrect password.');
-            }
-
-            return false;
-        }
-
-        return true;
-    }
     </script>
+    <script type="text/javascript" src="js/password-hash-auth.js"></script>
+    <script type="text/javascript" src="js/private-auth.js"></script>
     <style type="text/css" media="screen and (max-device-width: 800px)">
     table.gridtable {
         width: 100%;
@@ -221,96 +204,166 @@
                         <td align="center">-</td>
                     </tr>
                     <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>Ego4D Challenge-Natural Language Query</td>
+                        <td align="center">🥇 Champion</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/15262/#/results-tab">Link</a></td>
+                        <td align="center">-</td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>Ego4D Challenge-Goal Step</td>
+                        <td align="center">🥇 Champion</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/14878/#/results-tab">Link</a></td>
+                        <td align="center">-</td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>Ego4D Challenge-Short-Term Object Interaction Anticipation</td>
+                        <td align="center">🥇 Champion</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/14477/#/results-tab">Link</a></td>
+                        <td align="center">-</td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>EPIC-Kitchens Challenge-Action Anticipation</td>
+                        <td align="center">🥇 Champion</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/14471/#/results-tab">Link</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, 'EPIC-Kitchens Challenge-Action Anticipation.jpg');" href="cetificate/EPIC-Kitchens%20Challenge-Action%20Anticipation.jpg">PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>EPIC-Kitchens Challenge-Multi-Instance Retrieval</td>
+                        <td align="center">🥇 Champion</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/12008/#/results-tab">Link</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, 'EPIC-Kitchens Challenge-Multi-Instance Retrieval.jpg');" href="cetificate/EPIC-Kitchens%20Challenge-Multi-Instance%20Retrieval.jpg">PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>HD-EPIC VQA Challenge</td>
+                        <td align="center">🥇 Champion</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/13645/#/results-tab">Link</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, 'HD-EPIC VQA Challenge.jpg');" href="cetificate/HD-EPIC%20VQA%20Challenge.jpg">PDF</a></td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>CASTLE Challenge-VQA</td>
+                        <td align="center">🥈 Runner-up</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/13742/#/results-tab">Link</a></td>
+                        <td align="center">-</td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>EgoCross Challenge-Source-Limited Egocentric VQA</td>
+                        <td align="center">🥈 Runner-up</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/11279/#/results-tab">Link</a></td>
+                        <td align="center">-</td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>EgoCross Challenge-Open-Source Egocentric VQA</td>
+                        <td align="center">🥈 Runner-up</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/13868/#/results-tab">Link</a></td>
+                        <td align="center">-</td>
+                    </tr>
+                    <tr>
+                        <td align="center">CVPR 2026</td>
+                        <td>EPIC-Kitchens Challenge-Action Detection</td>
+                        <td align="center">🥉 Third Place</td>
+                        <td align="center"><a href="https://www.codabench.org/competitions/13830/#/results-tab">Link</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, 'EPIC-Kitchens Challenge-Action Detection.jpg');" href="cetificate/EPIC-Kitchens%20Challenge-Action%20Detection.jpg">PDF</a></td>
+                    </tr>
+                    <tr>
                         <td align="center">WWW 2025</td>
                         <td>Multimodal Information Retrieval Challenge</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://erel-mir.github.io/challenge/results/">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/15.pdf">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '15.pdf');" href="cetificate/15.pdf">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">CVPR 2025</td>
                         <td>Composed Video Retrieval Challenge</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://www.crcv.ucf.edu/cvpr2025-vidllms-workshop/leaderboards.html">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/14.pdf">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '14.pdf');" href="cetificate/14.pdf">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">CVPR 2025</td>
                         <td>Ego4D Challenge-Long-Term Action Anticipation</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://eval.ai/web/challenges/challenge-page/1598/leaderboard/3881">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/13.png">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '13.png');" href="cetificate/13.png">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">CVPR 2025</td>
                         <td>Ego4D Challenge-Moment Queries</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://eval.ai/web/challenges/challenge-page/1626/leaderboard/3913">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/12.png">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '12.png');" href="cetificate/12.png">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">CVPR 2025</td>
                         <td>Ego4D Challenge-Natural Language Query</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://eval.ai/web/challenges/challenge-page/1629/leaderboard/3920">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/11.png">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '11.png');" href="cetificate/11.png">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">CVPR 2025</td>
                         <td>Ego4D Challenge-Goal Step</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://eval.ai/web/challenges/challenge-page/2188/leaderboard/5405">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/10.png">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '10.png');" href="cetificate/10.png">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">ICML 2024</td>
                         <td>TiFA Workshop MLLM Attack Challenge</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://icml-tifa.github.io/challenges/track1/">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/9.jpg">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '9.jpg');" href="cetificate/9.jpg">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">CVPR 2024</td>
-                        <td>Ego4D Challenge-EgoSchema Track</td>
+                        <td>Ego4D Challenge-EgoSchema</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="https://egovis.github.io/cvpr24/">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/8.jpg">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '8.jpg');" href="cetificate/8.jpg">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">ICML 2024</td>
                         <td>Egoplan Challenge</td>
                         <td align="center">🥈 Runner-up</td>
                         <td align="center">-</td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/7.jpg">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '7.jpg');" href="cetificate/7.jpg">PDF</a></td>
                     </tr>
 
                     <tr>
                         <td align="center">CVPR 2024</td>
-                        <td>Ego4D Challenge-Natural Language Query Track</td>
+                        <td>Ego4D Challenge-Natural Language Query</td>
                         <td align="center">🥈 Runner-up</td>
                         <td align="center"><a href="https://egovis.github.io/cvpr24/">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/6.jpg">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '6.jpg');" href="cetificate/6.jpg">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">CVPR 2024</td>
                         <td>Ego4D Challenge-Goal Step Track</td>
                         <td align="center">🥉 Third Place</td>
                         <td align="center"><a href="https://egovis.github.io/cvpr24/">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/5.jpg">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '5.jpg');" href="cetificate/5.jpg">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">ACM MM 2023</td>
                         <td>Conversational Head Generation Challenge-Talking Head</td>
                         <td align="center">🥇 Champion</td>
                         <td align="center"><a href="cetificate/MM23_1.jpeg">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/4.pdf">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '4.pdf');" href="cetificate/4.pdf">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">ACM MM 2023</td>
                         <td>Conversational Head Generation Challenge-Listening Head</td>
                         <td align="center">🥉 Third Place</td>
                         <td align="center"><a href="cetificate/MM23_3.png">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/3.png">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '3.png');" href="cetificate/3.png">PDF</a></td>
                     </tr>
                     <!-- <tr>
                         <td align="center">ACM MM 2023</td>
@@ -322,20 +375,20 @@
                         <td>Conversational Head Generation Challenge-Listening Head</td>
                         <td align="center">🥈 Runner-up</td>
                         <td align="center"><a href="cetificate/MM22.png">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/2.png">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '2.png');" href="cetificate/2.png">PDF</a></td>
                     </tr>
                     <tr>
                         <td align="center">ACM MM 2022</td>
                         <td>Conversational Head Generation Challenge-Talking Head</td>
                         <td align="center">🥉 Third Place</td>
                         <td align="center"><a href="cetificate/MM22.png">Link</a></td>
-                        <td align="center"><a onclick="return verifyCertificatePassword(event);" href="cetificate/1.pdf">PDF</a></td>
+                        <td align="center"><a onclick="return openProtectedCertificate(event, '1.pdf');" href="cetificate/1.pdf">PDF</a></td>
                     </tr>
                 </table>
             </div>
         </div>
         <div id="footer">
-            copyright @ 2024 Liqiang Nie | Last Update: 04-15-2026
+            copyright @ 2024 Liqiang Nie | Last Update: 05-29-2026
         </div>
     </div>
 </body>
