@@ -135,6 +135,88 @@
          padding: 2px 42px 15px 19px;
      }
 
+     .github-star-badge {
+         display: inline-flex;
+         align-items: center;
+         gap: 3px;
+         vertical-align: middle;
+         font: bold 11px/18px Arial, sans-serif;
+         color: #24292f;
+         text-decoration: none;
+         white-space: nowrap;
+     }
+
+     .github-star-label,
+     .github-star-count {
+         display: inline-flex;
+         align-items: center;
+         height: 20px;
+         box-sizing: border-box;
+         border: 1px solid #c7cbd1;
+         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+     }
+
+     .github-star-label {
+         padding: 0 5px;
+         border-radius: 3px;
+         background: linear-gradient(#ffffff, #eeeeee);
+     }
+
+     .github-star-label:before {
+         content: "";
+         width: 14px;
+         height: 14px;
+         margin-right: 4px;
+         background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2324292f' d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z'/%3E%3C/svg%3E") center/14px 14px no-repeat;
+     }
+
+     .github-star-count {
+         position: relative;
+         min-width: 22px;
+         justify-content: center;
+         padding: 0 6px;
+         border-radius: 3px;
+         background: #ffffff;
+         font-weight: normal;
+     }
+
+     .github-star-count:before,
+     .github-star-count:after {
+         content: "";
+         position: absolute;
+         top: 6px;
+         width: 0;
+         height: 0;
+         border-top: 4px solid transparent;
+         border-bottom: 4px solid transparent;
+      }
+
+     .github-star-count:before {
+         left: -5px;
+         border-right: 5px solid #c7cbd1;
+      }
+
+     .github-star-count:after {
+         left: -4px;
+         border-right: 5px solid #ffffff;
+      }
+
+     .github-star-badge.is-unavailable .github-star-count {
+         color: #6a737d;
+     }
+
+     #column2 td a[href^="https://github.com/"],
+     #column2 td a[href^="https://github.com/"]:hover {
+         padding-bottom: 0;
+         border-bottom: 0;
+         background: transparent;
+      }
+
+     #column2 td a[href^="https://github.com/"]:hover .github-star-label {
+         border-color: #959da5;
+         background: linear-gradient(#ffffff, #e7e9ec);
+      }
+
     </style>
     <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -200,6 +282,88 @@
         });
     }
 
+    var iLearnReposPromise = null;
+    var githubStarBadges = {};
+    var GITHUB_STAR_CACHE_PREFIX = 'github-stars:';
+    var GITHUB_STAR_CACHE_TTL = 6 * 60 * 60 * 1000;
+    var GITHUB_STAR_FALLBACK_UPDATED = '2026-06-10';
+    var GITHUB_STAR_FALLBACKS = {
+        'hexiangnan/neural_collaborative_filtering': 1884,
+        'ilearn-lab/vla-diffusion-policy-robotics': 811,
+        'ilearn-lab/tois25-awesome-composed-image-retrieval': 352,
+        'weiyinwei/mmgcn': 328,
+        'zjuchenlong/sca-cnn.cvpr17': 212,
+        'ilearn-lab/neurips25-cogvla': 186,
+        'ilearn-lab/neurips24-optimus-1': 101,
+        'ilearn-lab/tpami26-awesome-mllms-for-video-temporal-grounding': 92,
+        'ilearn-lab/acl25-adaretake': 91,
+        'ilearn-lab/acmmm25-uav_on': 84,
+        'xiangwang1223/tem': 77,
+        'ilearn-lab/mm21-clcrec': 72,
+        'ilearn-lab/sigir21-dime': 70,
+        'ilearn-lab/acl25-gui-explorer': 66,
+        'ilearn-lab/mm24-diff': 58,
+        'ilearn-lab/cvpr26-hiconagent': 29,
+        'ilearn-lab/aaai26-h-gar': 32,
+        'ilearn-lab/aaai26-semanticvla': 68,
+        'ilearn-lab/neurips25-vtfsl': 35,
+        'ilearn-lab/cvpr25-dkdm': 36,
+        'ilearn-lab/eccv2024-genview': 29,
+        'ilearn-lab/sigir24-dqu-cir': 44,
+        'ilearn-lab/acl22-merit': 28,
+        'dongxingning/sha-gcl-for-sgg': 39,
+        'liyongqi67/mmcoqa': 30,
+        'wenjiewwj/ucrs': 18,
+        'ilearn-lab/www21-impgcn': 44,
+        'sparkjiao/larch': 5,
+        'huyp777/cmhn': 8,
+        'huyp777/csun': 7,
+        'jill0001/mas': 3,
+        'fine-grainedprivacydetection/grha': 5,
+        'weiyinwei/grcn': 31,
+        'weiyinwei/gcn_phr': 26,
+        'liufancs/maml': 8,
+        'guoyang9/alstp': 19,
+        'guoyang9/vqa-prior': 6,
+        'chentsuei/umd': 50,
+        'guoyang9/transearch': 9,
+        'askerlee/lapstyle': 40
+    };
+
+    function fetchILearnRepos() {
+        if (iLearnReposPromise) {
+            return iLearnReposPromise;
+        }
+
+        iLearnReposPromise = fetchRepoPage(1)
+            .then(function(firstPage) {
+                var lastPage = extractLastPage(firstPage.link);
+                var requests = [];
+                var repos = Array.isArray(firstPage.data) ? firstPage.data.slice(0) : [];
+                var page;
+
+                for (page = 2; page <= lastPage; page += 1) {
+                    requests.push(fetchRepoPage(page));
+                }
+
+                if (!requests.length) {
+                    return repos;
+                }
+
+                return Promise.all(requests).then(function(restPages) {
+                    restPages.forEach(function(result) {
+                        if (Array.isArray(result.data)) {
+                            repos = repos.concat(result.data);
+                        }
+                    });
+
+                    return repos;
+                });
+            });
+
+        return iLearnReposPromise;
+    }
+
     function updateILearnRepoCount() {
         var repoCountNode = document.getElementById('ilearn-repo-count');
 
@@ -207,41 +371,349 @@
             return;
         }
 
-        fetchRepoPage(1)
-            .then(function(firstPage) {
-                var lastPage = extractLastPage(firstPage.link);
-                var requests = [];
-                var page;
-                var total = Array.isArray(firstPage.data) ? firstPage.data.length : 0;
-
-                if (lastPage === 1) {
-                    repoCountNode.innerHTML = total;
-                    return null;
-                }
-
-                for (page = 2; page <= lastPage; page += 1) {
-                    requests.push(fetchRepoPage(page));
-                }
-
-                return Promise.all(requests).then(function(restPages) {
-                    restPages.forEach(function(result) {
-                        if (Array.isArray(result.data)) {
-                            total += result.data.length;
-                        }
-                    });
-
-                    repoCountNode.innerHTML = total;
-                });
+        fetchILearnRepos()
+            .then(function(repos) {
+                repoCountNode.innerHTML = repos.length;
             })
             .catch(function() {
                 return;
             });
     }
 
+    function formatGitHubStarCount(count) {
+        var value;
+
+        if (count < 1000) {
+            return String(count);
+        }
+
+        value = count / 1000;
+
+        if (count < 10000) {
+            return value.toFixed(1).replace(/\.0$/, '') + 'k';
+        }
+
+        return Math.round(value) + 'k';
+    }
+
+    function readCachedGitHubStars(repo) {
+        var cached;
+        var parsed;
+
+        try {
+            cached = window.localStorage && window.localStorage.getItem(GITHUB_STAR_CACHE_PREFIX + repo.toLowerCase());
+            if (!cached) {
+                return null;
+            }
+
+            parsed = JSON.parse(cached);
+            if (!parsed || typeof parsed.stars !== 'number' || typeof parsed.time !== 'number') {
+                return null;
+            }
+
+            if ((new Date()).getTime() - parsed.time > GITHUB_STAR_CACHE_TTL) {
+                return null;
+            }
+
+            return parsed.stars;
+        } catch (ignore) {
+            return null;
+        }
+    }
+
+    function writeCachedGitHubStars(repo, stars) {
+        try {
+            if (window.localStorage) {
+                window.localStorage.setItem(
+                    GITHUB_STAR_CACHE_PREFIX + repo.toLowerCase(),
+                    JSON.stringify({
+                        stars: stars,
+                        time: (new Date()).getTime()
+                    })
+                );
+            }
+        } catch (ignore) {
+            return;
+        }
+    }
+
+    function registerGitHubStarBadge(repo, badge) {
+        var key = repo.toLowerCase();
+
+        if (!githubStarBadges[key]) {
+            githubStarBadges[key] = [];
+        }
+
+        githubStarBadges[key].push(badge);
+    }
+
+    function getFallbackGitHubStars(repo) {
+        var stars = GITHUB_STAR_FALLBACKS[repo.toLowerCase()];
+
+        return typeof stars === 'number' ? stars : null;
+    }
+
+    function setFallbackGitHubStarBadge(repo) {
+        var stars = getFallbackGitHubStars(repo);
+
+        if (stars === null) {
+            setGitHubStarBadge(repo, null);
+            return;
+        }
+
+        setGitHubStarBadge(repo, stars, true);
+    }
+
+    function setGitHubStarBadge(repo, stars, isFallback) {
+        var badges = githubStarBadges[repo.toLowerCase()];
+        var badge;
+        var countNode;
+        var index;
+
+        if (!badges) {
+            return;
+        }
+
+        for (index = 0; index < badges.length; index += 1) {
+            badge = badges[index];
+            countNode = badge.getElementsByTagName('span')[1];
+
+            if (typeof stars === 'number') {
+                badge.className = 'github-star-badge';
+                if (isFallback) {
+                    badge.setAttribute('aria-label', repo + ' has about ' + stars + ' GitHub stars based on the saved fallback from ' + GITHUB_STAR_FALLBACK_UPDATED);
+                    badge.title = repo + ' saved fallback from ' + GITHUB_STAR_FALLBACK_UPDATED + ': ' + stars + ' GitHub stars';
+                } else {
+                    badge.setAttribute('aria-label', repo + ' has ' + stars + ' GitHub stars');
+                    badge.title = repo + ' has ' + stars + ' GitHub stars';
+                }
+                countNode.innerHTML = formatGitHubStarCount(stars);
+            } else {
+                badge.className = 'github-star-badge is-unavailable';
+                badge.setAttribute('aria-label', 'GitHub stars for ' + repo + ' are temporarily unavailable');
+                badge.title = 'GitHub stars are temporarily unavailable';
+                countNode.innerHTML = '--';
+            }
+        }
+    }
+
+    function buildGitHubRepoApiUrl(repo) {
+        var parts = repo.split('/');
+
+        return 'https://api.github.com/repos/' + encodeURIComponent(parts[0]) + '/' + encodeURIComponent(parts[1]);
+    }
+
+    function fetchGitHubRepoStars(repo) {
+        return fetch(
+            buildGitHubRepoApiUrl(repo),
+            {
+                headers: {
+                    'Accept': 'application/vnd.github+json'
+                }
+            }
+        )
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch repository stars.');
+                }
+
+                return response.json();
+            })
+            .then(function(data) {
+                if (typeof data.stargazers_count !== 'number') {
+                    throw new Error('Repository stars are unavailable.');
+                }
+
+                writeCachedGitHubStars(repo, data.stargazers_count);
+                setGitHubStarBadge(repo, data.stargazers_count);
+
+                return data.stargazers_count;
+            })
+            .catch(function() {
+                setFallbackGitHubStarBadge(repo);
+            });
+    }
+
+    function createGitHubStarBadge(repo) {
+        var badge = document.createElement('span');
+        var label = document.createElement('span');
+        var count = document.createElement('span');
+
+        badge.className = 'github-star-badge is-loading';
+        badge.setAttribute('data-repo', repo);
+        badge.setAttribute('role', 'img');
+        badge.setAttribute('aria-label', 'Loading GitHub stars for ' + repo);
+        badge.title = 'Loading GitHub stars for ' + repo;
+
+        label.className = 'github-star-label';
+        label.innerHTML = 'Stars';
+
+        count.className = 'github-star-count';
+        count.innerHTML = '...';
+
+        badge.appendChild(label);
+        badge.appendChild(count);
+
+        return badge;
+    }
+
+    function collectGitHubStarBadges() {
+        var badges;
+        var existingBadge;
+        var images;
+        var image;
+        var badge;
+        var repo;
+        var match;
+        var uniqueRepos = {};
+        var repos = [];
+        var index;
+
+        if (!document.querySelectorAll) {
+            return repos;
+        }
+
+        githubStarBadges = {};
+        badges = document.querySelectorAll('.github-star-badge[data-repo]');
+
+        for (index = 0; index < badges.length; index += 1) {
+            existingBadge = badges[index];
+            repo = existingBadge.getAttribute('data-repo');
+
+            if (!repo || repo.split('/').length !== 2) {
+                continue;
+            }
+
+            registerGitHubStarBadge(repo, existingBadge);
+
+            if (!uniqueRepos[repo.toLowerCase()]) {
+                uniqueRepos[repo.toLowerCase()] = repo;
+                repos.push(repo);
+            }
+        }
+
+        images = document.querySelectorAll('img[src*="img.shields.io/github/stars/"]');
+
+        for (index = 0; index < images.length; index += 1) {
+            image = images[index];
+            match = image.getAttribute('src').match(/github\/stars\/([^?]+)\.svg(?:\?|$)/);
+
+            if (!match) {
+                continue;
+            }
+
+            try {
+                repo = decodeURIComponent(match[1]);
+            } catch (ignore) {
+                repo = match[1];
+            }
+
+            if (repo.split('/').length !== 2) {
+                continue;
+            }
+
+            badge = createGitHubStarBadge(repo);
+            registerGitHubStarBadge(repo, badge);
+            image.parentNode.replaceChild(badge, image);
+
+            if (!uniqueRepos[repo.toLowerCase()]) {
+                uniqueRepos[repo.toLowerCase()] = repo;
+                repos.push(repo);
+            }
+        }
+
+        return repos;
+    }
+
+    function updateILearnStarBadges(repos) {
+        var repoLookup = {};
+        var iLearnRepos = [];
+        var index;
+
+        for (index = 0; index < repos.length; index += 1) {
+            if (repos[index].toLowerCase().indexOf('ilearn-lab/') === 0) {
+                iLearnRepos.push(repos[index]);
+                repoLookup[repos[index].toLowerCase()] = repos[index];
+            }
+        }
+
+        if (!iLearnRepos.length) {
+            return;
+        }
+
+        fetchILearnRepos()
+            .then(function(orgRepos) {
+                var foundRepos = {};
+
+                orgRepos.forEach(function(repo) {
+                    var key = repo.full_name && repo.full_name.toLowerCase();
+
+                    if (key && repoLookup[key] && typeof repo.stargazers_count === 'number') {
+                        foundRepos[key] = true;
+                        writeCachedGitHubStars(repoLookup[key], repo.stargazers_count);
+                        setGitHubStarBadge(repoLookup[key], repo.stargazers_count);
+                    }
+                });
+
+                iLearnRepos.forEach(function(repo) {
+                    if (!foundRepos[repo.toLowerCase()]) {
+                        fetchGitHubRepoStars(repo);
+                    }
+                });
+            })
+            .catch(function() {
+                iLearnRepos.forEach(function(repo) {
+                    fetchGitHubRepoStars(repo);
+                });
+            });
+    }
+
+    function updateGitHubStarBadges() {
+        var repos = collectGitHubStarBadges();
+        var uncachedRepos = [];
+        var cachedStars;
+        var index;
+
+        if (!repos.length) {
+            return;
+        }
+
+        if (!window.fetch) {
+            repos.forEach(function(repo) {
+                setFallbackGitHubStarBadge(repo);
+            });
+            return;
+        }
+
+        for (index = 0; index < repos.length; index += 1) {
+            setFallbackGitHubStarBadge(repos[index]);
+
+            cachedStars = readCachedGitHubStars(repos[index]);
+            if (cachedStars === null) {
+                uncachedRepos.push(repos[index]);
+            } else {
+                setGitHubStarBadge(repos[index], cachedStars);
+            }
+        }
+
+        updateILearnStarBadges(uncachedRepos);
+
+        uncachedRepos.forEach(function(repo) {
+            if (repo.toLowerCase().indexOf('ilearn-lab/') !== 0) {
+                fetchGitHubRepoStars(repo);
+            }
+        });
+    }
+
+    function initGitHubData() {
+        updateILearnRepoCount();
+        updateGitHubStarBadges();
+    }
+
     if (document.addEventListener) {
-        document.addEventListener('DOMContentLoaded', updateILearnRepoCount, false);
+        document.addEventListener('DOMContentLoaded', initGitHubData, false);
     } else if (window.attachEvent) {
-        window.attachEvent('onload', updateILearnRepoCount);
+        window.attachEvent('onload', initGitHubData);
     }
     </script>
 </head>
@@ -321,61 +793,61 @@
 				</tr>
 						
 				<tr><td>2017</td><td align="center">WWW</td><td>Neural Collaborative Filtering</td><td align="center">
-				<a href="paper/p173-he.pdf">PDF</a></td><td align="center"><a href="https://github.com/hexiangnan/neural_collaborative_filtering"><img alt="GitHub stars" src="https://img.shields.io/github/stars/hexiangnan/neural_collaborative_filtering.svg?style=social" /></a></td></tr>
+				<a href="paper/p173-he.pdf">PDF</a></td><td align="center"><a href="https://github.com/hexiangnan/neural_collaborative_filtering"><span class="github-star-badge is-loading" data-repo="hexiangnan/neural_collaborative_filtering" role="img" aria-label="Loading GitHub stars for hexiangnan/neural_collaborative_filtering" title="Loading GitHub stars for hexiangnan/neural_collaborative_filtering"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2026</td><td align="center">-</td><td>A Survey on Diffusion Policy for Robotic Manipulation</td>
 				<td align="center"><a href="https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.174378343.39356214/v1">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/VLA-Diffusion-Policy-Robotics"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/VLA-Diffusion-Policy-Robotics.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/VLA-Diffusion-Policy-Robotics"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/VLA-Diffusion-Policy-Robotics" role="img" aria-label="Loading GitHub stars for iLearn-Lab/VLA-Diffusion-Policy-Robotics" title="Loading GitHub stars for iLearn-Lab/VLA-Diffusion-Policy-Robotics"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2025</td><td align="center">ACM TOIS</td><td>A Comprehensive Survey on Composed Image Retrieval</td>
 				<td align="center"><a href="https://dl.acm.org/doi/full/10.1145/3767328">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval" role="img" aria-label="Loading GitHub stars for iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval" title="Loading GitHub stars for iLearn-Lab/TOIS25-Awesome-Composed-Image-Retrieval"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2019</td><td align="center">ACM MM</td><td>MMGCN: Multi-modal Graph Convolution Network for Personalized Recommendation of Micro-video </td>
 				<td align="center"><a href="paper/MMGCN.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/weiyinwei/MMGCN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/weiyinwei/MMGCN.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/weiyinwei/MMGCN"><span class="github-star-badge is-loading" data-repo="weiyinwei/MMGCN" role="img" aria-label="Loading GitHub stars for weiyinwei/MMGCN" title="Loading GitHub stars for weiyinwei/MMGCN"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2017</td><td align="center">CVPR</td><td>SCA-CNN: Spatial and Channel-Wise Attention in Convolutional Networks for Image Captioning</td><td align="center">
-				<a href="paper/scacnn.pdf">PDF</a></td><td align="center"><a href="https://github.com/zjuchenlong/sca-cnn.cvpr17"><img alt="GitHub stars" src="https://img.shields.io/github/stars/zjuchenlong/sca-cnn.cvpr17.svg?style=social" /></a></td></tr>
+				<a href="paper/scacnn.pdf">PDF</a></td><td align="center"><a href="https://github.com/zjuchenlong/sca-cnn.cvpr17"><span class="github-star-badge is-loading" data-repo="zjuchenlong/sca-cnn.cvpr17" role="img" aria-label="Loading GitHub stars for zjuchenlong/sca-cnn.cvpr17" title="Loading GitHub stars for zjuchenlong/sca-cnn.cvpr17"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2025</td><td align="center">NeurIPS</td><td>CogVLA: Cognition-Aligned Vision-Language-Action Models via Instruction-Driven Routing &amp; Sparsification</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2508.21046.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS25-CogVLA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/NeurIPS25-CogVLA.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS25-CogVLA"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/NeurIPS25-CogVLA" role="img" aria-label="Loading GitHub stars for iLearn-Lab/NeurIPS25-CogVLA" title="Loading GitHub stars for iLearn-Lab/NeurIPS25-CogVLA"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2024</td><td align="center">NeurIPS</td><td>Optimus-1: Hybrid Multimodal Memory Empowered Agents Excel in Long-Horizon Tasks</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2408.03615.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS24-Optimus-1"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/NeurIPS24-Optimus-1.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS24-Optimus-1"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/NeurIPS24-Optimus-1" role="img" aria-label="Loading GitHub stars for iLearn-Lab/NeurIPS24-Optimus-1" title="Loading GitHub stars for iLearn-Lab/NeurIPS24-Optimus-1"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2026</td><td align="center">TPAMI</td><td>A Survey on Video Temporal Grounding with Multimodal Large Language Model</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2508.10922.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding" role="img" aria-label="Loading GitHub stars for iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding" title="Loading GitHub stars for iLearn-Lab/TPAMI26-Awesome-MLLMs-for-Video-Temporal-Grounding"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2025</td><td align="center">ACL</td><td>AdaReTaKe: Adaptive Redundancy Reduction for Long-Context Video-Language Understanding</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2503.12559.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/ACL25-AdaReTaKe"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACL25-AdaReTaKe.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACL25-AdaReTaKe"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/ACL25-AdaReTaKe" role="img" aria-label="Loading GitHub stars for iLearn-Lab/ACL25-AdaReTaKe" title="Loading GitHub stars for iLearn-Lab/ACL25-AdaReTaKe"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2025</td><td align="center">ACM MM</td><td>UAV-ON: A Benchmark for Open-World Object Goal Navigation with Aerial Agents</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2508.00288.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/ACMMM25-UAV_ON"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACMMM25-UAV_ON.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACMMM25-UAV_ON"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/ACMMM25-UAV_ON" role="img" aria-label="Loading GitHub stars for iLearn-Lab/ACMMM25-UAV_ON" title="Loading GitHub stars for iLearn-Lab/ACMMM25-UAV_ON"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2018</td><td align="center">WWW</td><td>TEM: Tree-enhanced Embedding Model for Explainable Recommendation</td><td align="center">
-				<a href="paper/p1543-wang.pdf">PDF</a></td><td align="center"><a href="https://github.com/xiangwang1223/TEM"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xiangwang1223/TEM.svg?style=social" /></a></td></tr>
+				<a href="paper/p1543-wang.pdf">PDF</a></td><td align="center"><a href="https://github.com/xiangwang1223/TEM"><span class="github-star-badge is-loading" data-repo="xiangwang1223/TEM" role="img" aria-label="Loading GitHub stars for xiangwang1223/TEM" title="Loading GitHub stars for xiangwang1223/TEM"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2021</td><td align="center">ACM MM</td><td>Contrastive Learning for Cold-Start Recommendation</td>
 				<td align="center"><a href="https://dl.acm.org/doi/epdf/10.1145/3474085.3475665">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/MM21-CLCRec"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/MM21-CLCRec.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/MM21-CLCRec"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/MM21-CLCRec" role="img" aria-label="Loading GitHub stars for iLearn-Lab/MM21-CLCRec" title="Loading GitHub stars for iLearn-Lab/MM21-CLCRec"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2021</td><td align="center">SIGIR</td><td>Dynamic Modality Interaction Modeling for Image-Text Retrieval</td>
 				<td align="center"><a href="paper/SIGIR21_quleigang.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/SIGIR21-DIME"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/SIGIR21-DIME.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/SIGIR21-DIME"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/SIGIR21-DIME" role="img" aria-label="Loading GitHub stars for iLearn-Lab/SIGIR21-DIME" title="Loading GitHub stars for iLearn-Lab/SIGIR21-DIME"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2025</td><td align="center">ACL</td><td>GUI-explorer: Autonomous Exploration and Mining of Transition-aware Knowledge for GUI Agent</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2505.16827.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/ACL25-GUI-explorer"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACL25-GUI-explorer.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACL25-GUI-explorer"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/ACL25-GUI-explorer" role="img" aria-label="Loading GitHub stars for iLearn-Lab/ACL25-GUI-explorer" title="Loading GitHub stars for iLearn-Lab/ACL25-GUI-explorer"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				<tr><td>2024</td><td align="center">ACM MM</td><td>Diffusion Facial Forgery Detection</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2401.15859.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/MM24-DiFF"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/MM24-DiFF.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/MM24-DiFF"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/MM24-DiFF" role="img" aria-label="Loading GitHub stars for iLearn-Lab/MM24-DiFF" title="Loading GitHub stars for iLearn-Lab/MM24-DiFF"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 
 
@@ -383,15 +855,15 @@
 
 				<!-- <tr><td>2026</td><td align="center">CVPR</td><td>HiconAgent: History Context-aware Policy Optimization for GUI Agents</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2512.01763.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/CVPR26-HiconAgent"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/CVPR26-HiconAgent.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/CVPR26-HiconAgent"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/CVPR26-HiconAgent" role="img" aria-label="Loading GitHub stars for iLearn-Lab/CVPR26-HiconAgent" title="Loading GitHub stars for iLearn-Lab/CVPR26-HiconAgent"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2026</td><td align="center">AAAI</td><td>H-GAR: A Hierarchical Interaction Framework via Goal-Driven Observation-Action Refinement for Robotic Manipulation</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2511.17079.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/AAAI26-H-GAR"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/AAAI26-H-GAR.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/AAAI26-H-GAR"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/AAAI26-H-GAR" role="img" aria-label="Loading GitHub stars for iLearn-Lab/AAAI26-H-GAR" title="Loading GitHub stars for iLearn-Lab/AAAI26-H-GAR"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2026</td><td align="center">AAAI</td><td>SemanticVLA: Semantic-Aligned Sparsification and Enhancement for Efficient Robotic Manipulation</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2511.10518.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/AAAI26-SemanticVLA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/AAAI26-SemanticVLA.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/AAAI26-SemanticVLA"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/AAAI26-SemanticVLA" role="img" aria-label="Loading GitHub stars for iLearn-Lab/AAAI26-SemanticVLA" title="Loading GitHub stars for iLearn-Lab/AAAI26-SemanticVLA"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 
 
@@ -402,11 +874,11 @@
 
 				<tr><td>2025</td><td align="center">NeurIPS</td><td>VT-FSL: Bridging Vision and Text with LLMs for Few-Shot Learning</td>
 				<td align="center"><a href="https://openreview.net/pdf/521c2d2f24d89aa54641a2bb0276e4fd1a5cebf4.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS25-VTFSL"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/NeurIPS25-VTFSL.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/NeurIPS25-VTFSL"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/NeurIPS25-VTFSL" role="img" aria-label="Loading GitHub stars for iLearn-Lab/NeurIPS25-VTFSL" title="Loading GitHub stars for iLearn-Lab/NeurIPS25-VTFSL"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2025</td><td align="center">CVPR</td><td>DKDM: Data-Free Knowledge Distillation for Diffusion Models with Any Architecture</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2409.03550.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/CVPR25-DKDM"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/CVPR25-DKDM.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/CVPR25-DKDM"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/CVPR25-DKDM" role="img" aria-label="Loading GitHub stars for iLearn-Lab/CVPR25-DKDM" title="Loading GitHub stars for iLearn-Lab/CVPR25-DKDM"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				
 				
@@ -414,45 +886,45 @@
 				
 				<tr><td>2024</td><td align="center">ECCV</td><td>GenView: Enhancing View Quality with Pretrained Generative Model for Self-Supervised Learning</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2403.12003.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/ECCV2024-genview"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ECCV2024-genview.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ECCV2024-genview"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/ECCV2024-genview" role="img" aria-label="Loading GitHub stars for iLearn-Lab/ECCV2024-genview" title="Loading GitHub stars for iLearn-Lab/ECCV2024-genview"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2024</td><td align="center">SIGIR</td><td>Simple but Effective Raw-Data Level Multimodal Fusion for Composed Image Retrieval</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2404.15875.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/SIGIR24-DQU-CIR"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/SIGIR24-DQU-CIR.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/SIGIR24-DQU-CIR"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/SIGIR24-DQU-CIR" role="img" aria-label="Loading GitHub stars for iLearn-Lab/SIGIR24-DQU-CIR" title="Loading GitHub stars for iLearn-Lab/SIGIR24-DQU-CIR"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				
 				<tr><td>2022</td><td align="center">ACL</td><td>MERIt: Meta-Path Guided Contrastive Learning for Logical Reasoning</td>
 				<td align="center"><a href="https://arxiv.org/pdf/2203.00357.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/ACL22-MERIt"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/ACL22-MERIt.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/ACL22-MERIt"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/ACL22-MERIt" role="img" aria-label="Loading GitHub stars for iLearn-Lab/ACL22-MERIt" title="Loading GitHub stars for iLearn-Lab/ACL22-MERIt"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2022</td><td align="center">CVPR</td><td>Stacked Hybrid-Attention and Group Collaborative Learning for Unbiased Scene Graph Generation</td>
 				<td align="center"><a href="paper/xingning_dong.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/dongxingning/SHA-GCL-for-SGG"><img alt="GitHub stars" src="https://img.shields.io/github/stars/dongxingning/SHA-GCL-for-SGG.svg?style=social" /></a></td></tr>	
+				<td align="center"><a href="https://github.com/dongxingning/SHA-GCL-for-SGG"><span class="github-star-badge is-loading" data-repo="dongxingning/SHA-GCL-for-SGG" role="img" aria-label="Loading GitHub stars for dongxingning/SHA-GCL-for-SGG" title="Loading GitHub stars for dongxingning/SHA-GCL-for-SGG"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>	
 				
 				<tr><td>2022</td><td align="center">ACL</td><td>MMCoQA: Conversational Question Answering over Text, Tables, and Images</td>
 				<td align="center"><a href="https://aclanthology.org/2022.acl-long.290/">PDF</a></td>
-				<td align="center"><a href="https://github.com/liyongqi67/MMCoQA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/liyongqi67/MMCoQA.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/liyongqi67/MMCoQA"><span class="github-star-badge is-loading" data-repo="liyongqi67/MMCoQA" role="img" aria-label="Loading GitHub stars for liyongqi67/MMCoQA" title="Loading GitHub stars for liyongqi67/MMCoQA"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2022</td><td align="center">SIGIR</td><td>User-controllable Recommendation Against Filter Bubbles</td>
 				<td align="center"><a href="https://arxiv.org/abs/2204.13844">PDF</a></td>
-				<td align="center"><a href="https://github.com/WenjieWWJ/UCRS"><img alt="GitHub stars" src="https://img.shields.io/github/stars/WenjieWWJ/UCRS.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/WenjieWWJ/UCRS"><span class="github-star-badge is-loading" data-repo="WenjieWWJ/UCRS" role="img" aria-label="Loading GitHub stars for WenjieWWJ/UCRS" title="Loading GitHub stars for WenjieWWJ/UCRS"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 					
 				
 				<tr><td>2021</td><td align="center">WWW</td><td>Interest-aware Message-Passing GCN for Recommendation</td>
 				<td align="center"><a href="https://dl.acm.org/doi/abs/10.1145/3442381.3449986">PDF</a></td>
-				<td align="center"><a href="https://github.com/iLearn-Lab/WWW21-IMPGCN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/iLearn-Lab/WWW21-IMPGCN.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/iLearn-Lab/WWW21-IMPGCN"><span class="github-star-badge is-loading" data-repo="iLearn-Lab/WWW21-IMPGCN" role="img" aria-label="Loading GitHub stars for iLearn-Lab/WWW21-IMPGCN" title="Loading GitHub stars for iLearn-Lab/WWW21-IMPGCN"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2021</td><td align="center">TIP</td><td>Conversational Image Search</td>
 				<td align="center"><a href="paper/2021TIP_Contextual_Image_Search.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/SparkJiao/LARCH"><img alt="GitHub stars" src="https://img.shields.io/github/stars/SparkJiao/LARCH.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/SparkJiao/LARCH"><span class="github-star-badge is-loading" data-repo="SparkJiao/LARCH" role="img" aria-label="Loading GitHub stars for SparkJiao/LARCH" title="Loading GitHub stars for SparkJiao/LARCH"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				<tr><td>2021</td><td align="center">TIP</td><td>Video Moment Localization via Deep Cross-Modal Hashing</td>
 				<td align="center"><a href="paper/CMHN_Video Moment Localization via Deep Cross-modal Hashing.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/Huyp777/CMHN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Huyp777/CMHN.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/Huyp777/CMHN"><span class="github-star-badge is-loading" data-repo="Huyp777/CMHN" role="img" aria-label="Loading GitHub stars for Huyp777/CMHN" title="Loading GitHub stars for Huyp777/CMHN"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 					
 				<tr><td>2021</td><td align="center">TIP</td><td>Coarse-to-Fine Semantic Alignment for Cross-Modal Moment Localization</td>
 				<td align="center"><a href="paper/Coarse-to-Fine Semantic Alignment for Cross-Modal Moment Localization.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/Huyp777/CSUN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Huyp777/CSUN.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/Huyp777/CSUN"><span class="github-star-badge is-loading" data-repo="Huyp777/CSUN" role="img" aria-label="Loading GitHub stars for Huyp777/CSUN" title="Loading GitHub stars for Huyp777/CSUN"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
 				
 				
@@ -460,43 +932,43 @@
 
 				<tr><td>2021</td><td align="center">SIGIR</td><td>Multimodal Activation: Awakening Dialog Robots without Wake Words</td>
 				<td align="center"><a href="paper/Multi_acti_final-0505.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/Jill0001/MAS"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Jill0001/MAS.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/Jill0001/MAS"><span class="github-star-badge is-loading" data-repo="Jill0001/MAS" role="img" aria-label="Loading GitHub stars for Jill0001/MAS" title="Loading GitHub stars for Jill0001/MAS"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 			
 					
 					
 				<tr><td>2020</td><td align="center">TOIS</td><td>Fine-Grained Privacy Detection with Graph-Regularized Hierarchical Attentive Representation Learning</td>
 				<td align="center"><a href="https://xuemengsong.github.io/TOIS2020_1.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/Fine-grainedPrivacyDetection/GrHA"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Fine-grainedPrivacyDetection/GrHA.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/Fine-grainedPrivacyDetection/GrHA"><span class="github-star-badge is-loading" data-repo="Fine-grainedPrivacyDetection/GrHA" role="img" aria-label="Loading GitHub stars for Fine-grainedPrivacyDetection/GrHA" title="Loading GitHub stars for Fine-grainedPrivacyDetection/GrHA"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 									
 					
 				<tr><td>2020</td><td align="center">ACM MM</td><td>Graph-Refined Convolutional Network for Multimedia Recommendation with Implicit Feedback</td>
 				<td align="center"><a href="https://dl.acm.org/doi/10.1145/3394171.3413556">PDF</a></td>
-				<td align="center"><a href="https://github.com/weiyinwei/GRCN"><img alt="GitHub stars" src="https://img.shields.io/github/stars/weiyinwei/GRCN.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/weiyinwei/GRCN"><span class="github-star-badge is-loading" data-repo="weiyinwei/GRCN" role="img" aria-label="Loading GitHub stars for weiyinwei/GRCN" title="Loading GitHub stars for weiyinwei/GRCN"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 					
 				<tr><td>2019</td><td align="center">ACM MM</td><td>Personalized Hashtag Recommendation for Micro-videos</td>
 				<td align="center"><a href="paper/HashtagRec.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/weiyinwei/GCN_PHR"><img alt="GitHub stars" src="https://img.shields.io/github/stars/weiyinwei/GCN_PHR.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/weiyinwei/GCN_PHR"><span class="github-star-badge is-loading" data-repo="weiyinwei/GCN_PHR" role="img" aria-label="Loading GitHub stars for weiyinwei/GCN_PHR" title="Loading GitHub stars for weiyinwei/GCN_PHR"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 					
 				
 				<tr><td>2019</td><td align="center">ACM MM</td><td>User Diverse Preference Modeling by Multimodal Attentive Metric Learning</td>
 				<td align="center"><a href="paper/User Diverse Preference Modeling by Multimodal A entive Metric Learning.pdf">PDF</a></td>
-				<td align="center"><a href="https://github.com/liufancs/MAML"><img alt="GitHub stars" src="https://img.shields.io/github/stars/liufancs/MAML.svg?style=social" /></a></td></tr>
+				<td align="center"><a href="https://github.com/liufancs/MAML"><span class="github-star-badge is-loading" data-repo="liufancs/MAML" role="img" aria-label="Loading GitHub stars for liufancs/MAML" title="Loading GitHub stars for liufancs/MAML"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 					
-				<tr><td>2019</td><td align="center">TOIS</td><td>Attentive Long Short-Term Preference Modeling for Personalized Product Search</td><td align="center"><a href="paper/a19-guo.pdf">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/ALSTP"><img alt="GitHub stars" src="https://img.shields.io/github/stars/guoyang9/ALSTP.svg?style=social" /></a></td></tr>
+				<tr><td>2019</td><td align="center">TOIS</td><td>Attentive Long Short-Term Preference Modeling for Personalized Product Search</td><td align="center"><a href="paper/a19-guo.pdf">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/ALSTP"><span class="github-star-badge is-loading" data-repo="guoyang9/ALSTP" role="img" aria-label="Loading GitHub stars for guoyang9/ALSTP" title="Loading GitHub stars for guoyang9/ALSTP"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 								
 								
-				<tr><td>2019</td><td align="center">SIGIR</td><td>Quantifying and Alleviating the Language Prior Problem in Visual Question Answering</td><td align="center"><a href="https://arxiv.org/pdf/1905.04877">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/vqa-prior"><img alt="GitHub stars" src="https://img.shields.io/github/stars/guoyang9/vqa-prior.svg?style=social" /></a></td></tr>
+				<tr><td>2019</td><td align="center">SIGIR</td><td>Quantifying and Alleviating the Language Prior Problem in Visual Question Answering</td><td align="center"><a href="https://arxiv.org/pdf/1905.04877">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/vqa-prior"><span class="github-star-badge is-loading" data-repo="guoyang9/vqa-prior" role="img" aria-label="Loading GitHub stars for guoyang9/vqa-prior" title="Loading GitHub stars for guoyang9/vqa-prior"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				
-				<tr><td>2019</td><td align="center">SIGIR</td><td>User Attention-guided Multimodal Dialog Systems</td><td align="center"><a href="https://xuemengsong.github.io/sigir2019_umd.pdf">PDF</a></td><td align="center"><a href="https://github.com/ChenTsuei/UMD"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ChenTsuei/UMD.svg?style=social" /></a></td></tr>
+				<tr><td>2019</td><td align="center">SIGIR</td><td>User Attention-guided Multimodal Dialog Systems</td><td align="center"><a href="https://xuemengsong.github.io/sigir2019_umd.pdf">PDF</a></td><td align="center"><a href="https://github.com/ChenTsuei/UMD"><span class="github-star-badge is-loading" data-repo="ChenTsuei/UMD" role="img" aria-label="Loading GitHub stars for ChenTsuei/UMD" title="Loading GitHub stars for ChenTsuei/UMD"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 								
 				
 				<tr><td>2018</td><td align="center">ACM MM</td><td>Multi-modal Preference Modeling for Product Search</td><td align="center">
-				<a href="paper/p1865-guo.pdf">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/TranSearch"><img alt="GitHub stars" src="https://img.shields.io/github/stars/guoyang9/TranSearch.svg?style=social" /></a></td></tr>
+				<a href="paper/p1865-guo.pdf">PDF</a></td><td align="center"><a href="https://github.com/guoyang9/TranSearch"><span class="github-star-badge is-loading" data-repo="guoyang9/TranSearch" role="img" aria-label="Loading GitHub stars for guoyang9/TranSearch" title="Loading GitHub stars for guoyang9/TranSearch"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 
 				
 				<tr><td>2017</td><td align="center">ACM MM</td><td>Laplacian-Steered Neural Style Transfer</td><td align="center">
-				<a href="paper/p1716-li.pdf">PDF</a></td><td align="center"><a href="https://github.com/askerlee/lapstyle"><img alt="GitHub stars" src="https://img.shields.io/github/stars/askerlee/lapstyle.svg?style=social" /></a></td></tr>
+				<a href="paper/p1716-li.pdf">PDF</a></td><td align="center"><a href="https://github.com/askerlee/lapstyle"><span class="github-star-badge is-loading" data-repo="askerlee/lapstyle" role="img" aria-label="Loading GitHub stars for askerlee/lapstyle" title="Loading GitHub stars for askerlee/lapstyle"><span class="github-star-label">Stars</span><span class="github-star-count">...</span></span></a></td></tr>
 				 -->
 
 				
@@ -506,7 +978,7 @@
             </div>
         </div>
         <div id="footer">
-            copyright @ 2022 Liqiang Nie | Last Update: 06-02-2026</div>
+            copyright @ 2022 Liqiang Nie | Last Update: 06-10-2026</div>
     </div>
 </body>
 
