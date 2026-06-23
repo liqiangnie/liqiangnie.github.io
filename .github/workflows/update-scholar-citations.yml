@@ -22,7 +22,9 @@ jobs:
           python-version: "3.x"
 
       - name: Refresh citation snapshot
-        run: python3 scripts/update_scholar_citations.py
+        run: |
+          # Disabled because Google Scholar blocks automated scraping from CI.
+          # python3 scripts/update_scholar_citations.py
 
       - name: Commit updated citation data
         run: |
